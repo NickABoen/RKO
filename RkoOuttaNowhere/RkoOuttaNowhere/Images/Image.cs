@@ -202,7 +202,8 @@ namespace RkoOuttaNowhere.Images
 
         public void UnloadContent()
         {
-            _content.Unload();
+            if(_content != null)
+                _content.Unload();
             foreach (var effect in _effectList)
                 DeactivateEffect(effect.Key);
         }

@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Input;
+using RkoOuttaNowhere.Ui;
 
 namespace RkoOuttaNowhere.Screens
 {
@@ -22,6 +23,7 @@ namespace RkoOuttaNowhere.Screens
     {
         protected ContentManager _content;
         protected Image _backgroundImage;
+        protected Gui _gui;
 
         /// <summary>
         /// Default constructor

@@ -35,9 +35,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gui\Button.cs" />
-    <Compile Include="Gui\UiManager.cs" />
-    <Compile Include="Gui\UiPanel.cs" />
+    <Compile Include="Ui\Button.cs" />
+    <Compile Include="Ui\Gui.cs" />
+    <Compile Include="Ui\GuiPanel.cs" />
     <Compile Include="Images\Effects\FadeEffect.cs" />
     <Compile Include="Images\Effects\ImageEffect.cs" />
     <Compile Include="Images\Effects\SpriteSheetEffect.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="TowerDefense.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ui\TitleGui.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -84,6 +85,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\fade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\title\newGameClicked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\title\newGameHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\title\newGameNeutral.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\player.png">
