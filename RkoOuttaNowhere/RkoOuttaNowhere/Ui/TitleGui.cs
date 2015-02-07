@@ -28,18 +28,22 @@ namespace RkoOuttaNowhere.Ui
             _panels.Add(_mainMenu);
 
             // Create the new game, load game, options, and quit buttons
+            _position = new Vector2(Screens.ScreenManager.Instance.Dimensions.X / 2 - 171, Screens.ScreenManager.Instance.Dimensions.Y / 2);
+            _buttonOffset = new Vector2(0, 100);
+            _originOffset = new Vector2(0, 0);
+
             Button newGame = new Button();
             newGame.LoadContent("ui/title/newGame", _position + _originOffset, HandleNewGame);
             _mainMenu.Buttons.Add(newGame);
             Button loadGame = new Button();
-            newGame.LoadContent("ui/title/loadGame", _position + _originOffset, HandleNewGame);
-            _mainMenu.Buttons.Add(newGame);
+            loadGame.LoadContent("ui/title/loadGame", _position + _originOffset + _buttonOffset, HandleNewGame);
+            _mainMenu.Buttons.Add(loadGame);
             Button options = new Button();
-            newGame.LoadContent("ui/title/options", _position + _originOffset, HandleNewGame);
-            _mainMenu.Buttons.Add(newGame);
+            options.LoadContent("ui/title/options", _position + _originOffset + 2 * _buttonOffset, HandleNewGame);
+            _mainMenu.Buttons.Add(options);
             Button quit = new Button();
-            newGame.LoadContent("ui/title/quit", _position + _originOffset, HandleNewGame);
-            _mainMenu.Buttons.Add(newGame);
+            quit.LoadContent("ui/title/quit", _position + _originOffset + 3 * _buttonOffset, HandleNewGame);
+            _mainMenu.Buttons.Add(quit);
         }
 
         public override void UnloadContent()

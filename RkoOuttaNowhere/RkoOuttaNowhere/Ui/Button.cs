@@ -80,16 +80,19 @@ namespace RkoOuttaNowhere.Ui
             // Load neutral image
             Image i = new Image();
             i.Path = path + "Neutral";
+            i.Position = position;
             i.LoadContent();
             Images.Add(i);
             // Load hover image
             i = new Image();
             i.Path = path + "Hover";
+            i.Position = position;
             i.LoadContent();
             Images.Add(i);
             // Load clicked image
             i = new Image();
             i.Path = path + "Clicked";
+            i.Position = position;
             i.LoadContent();
             Images.Add(i);
 
