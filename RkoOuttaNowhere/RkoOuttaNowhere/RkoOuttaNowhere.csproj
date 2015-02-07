@@ -35,6 +35,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Gui\Button.cs" />
+    <Compile Include="Gui\UiManager.cs" />
+    <Compile Include="Gui\UiPanel.cs" />
     <Compile Include="Images\Effects\FadeEffect.cs" />
     <Compile Include="Images\Effects\ImageEffect.cs" />
     <Compile Include="Images\Effects\SpriteSheetEffect.cs" />

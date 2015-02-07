@@ -63,7 +63,6 @@ namespace RkoOuttaNowhere.Screens
             _image.Path = "fade";
             _image.Scale = Dimensions;
             _image.Alpha = 0.5f;
-            //_image.AddFadeEffect();
 
             Initialize();
         }
