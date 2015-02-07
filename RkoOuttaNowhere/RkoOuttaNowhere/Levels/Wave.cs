@@ -13,12 +13,14 @@ namespace RkoOuttaNowhere.Levels
     public class Wave
     {
         private List<Unit> _units;
+        // Different from _isActive, deals with wave timer
         private bool _active;
         private int _waveValue,
                     _numLanes,
                     _fieldSize,
                     _unitStagger,
-                    _fieldOrigin;
+                    _fieldOrigin,
+                    _unitsAlive;
         
         
         public int WaveValue
@@ -30,6 +32,12 @@ namespace RkoOuttaNowhere.Levels
         {
             get { return _units; }
             set { _units = value; }
+        }
+        // Different from _isActive, deals with wave timer
+        public bool Active
+        {
+            get { return _active; }
+            set { _active = value; }
         }
 
         public Wave(int waveValue, int numlanes, int fieldSize, int fieldOrigin)
@@ -55,6 +63,7 @@ namespace RkoOuttaNowhere.Levels
                 u.SetPosition(new Vector2(0 - (count / _numLanes) * _unitStagger - u.Dimensions.X, _fieldOrigin + (count % _numLanes * offset)));
                 count++;
             }
+            _unitsAlive = _units.Count;
         }
 
         public void UnloadContent()
@@ -68,7 +77,17 @@ namespace RkoOuttaNowhere.Levels
             if (_active)
             {
                 foreach (Unit u in _units)
+                {
                     u.Update(gametime);
+                }
+
+                // Remove any inactive units
+                _units.RemoveAll(unit => !unit.IsActive);
+                // Check for the wave to be dead
+                if (_units.Count == 0)
+                {
+                    _active = false;
+                }
             }
         }
 

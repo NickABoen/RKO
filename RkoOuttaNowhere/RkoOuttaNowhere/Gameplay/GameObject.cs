@@ -15,13 +15,19 @@ namespace RkoOuttaNowhere.Gameplay
     public class GameObject
     {
         protected Vector2 _position, _velocity, _dimensions;
+        protected Image _image;
+        protected bool _isVisible, _isActive;
+
         public Vector2 Dimensions
         {
             get { return _dimensions; }
             set { _dimensions = value; }
         }
-        protected Image _image;
-        protected bool _isVisible, _isActive;
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
+        }
 
         public GameObject()
         {
@@ -50,13 +56,18 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Draw(spritebatch);
         }
 
+        public virtual void OnDestroy()
+        {
+            
+        }
+
         public virtual void SetPosition(Vector2 pos)
         {
             _position = pos;
             _image.Position = pos;
         }
 
-        public Rectangle getRect()
+        public Rectangle GetRect()
         {
 
             Rectangle r = _image.SourceRect;

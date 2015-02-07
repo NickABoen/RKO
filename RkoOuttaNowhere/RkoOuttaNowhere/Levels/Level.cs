@@ -25,6 +25,10 @@ namespace RkoOuttaNowhere.Levels
         private float _waveTimer,
                       _elapsedTime;
 
+        private bool _levelOver,
+                     _changingScrens,
+                     _completed;
+
         private List<Wave> _waves;
         public List<Wave> Waves
         {
@@ -117,6 +121,27 @@ namespace RkoOuttaNowhere.Levels
                 {
                     _waves[++_currentWave].Activate();
                     _elapsedTime = 0;
+                }
+            }
+
+            // Check for the level to be over
+            if (_currentWave + 1 == _numWaves)
+            {
+                _levelOver = true;
+                foreach (Wave w in _waves) 
+                {
+                    if (w.Active)
+                        _levelOver = false;
+                }
+
+                if (_levelOver)
+                {
+                    if (!_changingScrens)
+                    {
+                        Screens.ScreenManager.Instance.ChangeScreens(Screens.ScreenType.LevelSelect);
+                        _changingScrens = true;
+                    }
+                    
                 }
             }
         }

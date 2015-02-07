@@ -97,12 +97,12 @@ namespace RkoOuttaNowhere.Gameplay
                 {
                     foreach (Unit u in units)
                     {
-                        Rectangle r1 = l.getRect(), r2 = u.getRect();
+                        Rectangle r1 = l.getRect(), r2 = u.GetRect();
                         //might need to check if unit is enemy first?
-                        if (l.getRect().Intersects(u.getRect()))
+                        if (l.getRect().Intersects(u.GetRect()))
                         {
                             _lasers.Remove(l);
-                            if((u.getHealth = u.getHealth - l.getDamage) <= 0)
+                            if((u.Health = u.Health - l.getDamage) <= 0)
                             {
                                 units.Remove(u);
                             }
