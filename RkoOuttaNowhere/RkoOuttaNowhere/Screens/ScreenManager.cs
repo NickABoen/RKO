@@ -23,21 +23,15 @@ namespace RkoOuttaNowhere.Screens
     {
         private static ScreenManager _instance;
         private GameScreen _currentScreen, _newScreen;
+        private List<GameScreen> _screens;
 
         public Image Image;
-
-        [XmlIgnore]
         public Camera Camera;
 
-        [XmlIgnore]
         public Vector2 Dimensions { private set; get; }
-        [XmlIgnore]
         public ContentManager Content { private set; get; }
-        [XmlIgnore]
         public GraphicsDevice GraphicsDevice;
-        [XmlIgnore]
         public SpriteBatch SpriteBatch;
-        [XmlIgnore]
         public bool IsTransitioning { get; private set; }
 
         /// <summary>
@@ -49,9 +43,7 @@ namespace RkoOuttaNowhere.Screens
             {
                 if (_instance == null)
                 {
-                    //XmlManager<ScreenManager> xml = new XmlManager<ScreenManager>();
-                    //_instance = xml.Load("Load/Screens/ScreenManager.xml");
-                    //instance = new ScreenManager();
+                    _instance = new ScreenManager();
                 }
                 return _instance;
             }
@@ -62,22 +54,27 @@ namespace RkoOuttaNowhere.Screens
         /// </summary>
         public ScreenManager()
         {
-            Dimensions = new Vector2(1024, 576);
+            Dimensions = new Vector2(1024, 768);
             Camera = new Camera();
-            //currentScreen = new SplashScreen();
-            _currentScreen = new GameplayScreen();
-
-            //_currentScreen = _xmlGameScreenManager.Load("Load/Screens/SplashScreen.xml");
             IsTransitioning = false;
+            _screens = new List<GameScreen>();
+
+            _screens.Add(new SplashScreen());
+            _currentScreen = _screens[(int)ScreenType.Splash];
+
+            _screens.Add(new LevelSelectScreen());
+            _screens.Add(new GameplayScreen());
+            _screens.Add(new UpgradeScreen());
+            _screens.Add(new GameOverScreen());
         }
 
         /// <summary>
         /// Handles a screen changes
         /// </summary>
         /// <param name="screenName">name of the class to load</param>
-        public void ChangeScreens(string screenName)
+        public void ChangeScreens(ScreenType type)
         {
-            _newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("RkoOuttaNowhere.Source.Screens." + screenName));
+            _newScreen = _screens[(int)type];
             Image.IsActive = true;
             Image.FadeEffect.Increase = true;
             Image.Alpha = 0.0f;
@@ -97,9 +94,6 @@ namespace RkoOuttaNowhere.Screens
                 {
                     _currentScreen.UnloadContent();
                     _currentScreen = _newScreen;
-                    //_xmlGameScreenManager.Type = _currentScreen.Type;
-                    //if(File.Exists(_currentScreen.XmlPath))
-                        //_currentScreen = _xmlGameScreenManager.Load(_currentScreen.XmlPath);
                     _currentScreen.LoadContent();
                 }
                 else if (Image.Alpha == 0.0f)
@@ -116,9 +110,9 @@ namespace RkoOuttaNowhere.Screens
         /// <param name="Content"></param>
         public void LoadContent(ContentManager Content)
         {
-            this.Content = new ContentManager(Content.ServiceProvider, "Content");
+            this.Content = Content;
             _currentScreen.LoadContent();
-            Image.LoadContent();
+            //Image.LoadContent();
         }
 
         /// <summary>
@@ -127,7 +121,7 @@ namespace RkoOuttaNowhere.Screens
         public void UnloadContent()
         {
             _currentScreen.UnloadContent();
-            Image.UnloadContent();
+            //Image.UnloadContent();
         }
 
         /// <summary>

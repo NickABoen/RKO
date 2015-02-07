@@ -41,6 +41,7 @@
     <Compile Include="Images\Image.cs" />
     <Compile Include="Screens\Camera.cs" />
     <Compile Include="Screens\GameOverScreen.cs" />
+    <Compile Include="Screens\ScreenType.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\LevelSelectScreen.cs" />
     <Compile Include="Screens\UpgradeScreen.cs" />
