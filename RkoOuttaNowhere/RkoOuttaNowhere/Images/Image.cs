@@ -36,6 +36,12 @@ namespace RkoOuttaNowhere.Images
         public FadeEffect FadeEffect;
         public SpriteSheetEffect SpriteSheetEffect;
 
+        public Dictionary<string, ImageEffect> EffectList
+        {
+            get { return _effectList; }
+            set { _effectList = value; }
+        }
+
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -69,7 +75,7 @@ namespace RkoOuttaNowhere.Images
             }
 
             // Add it to the list of effects
-            _effectList.Add(effect.GetType().ToString().Replace("RkoOuttaNowhere.Source.Visuals.Effects.", ""), (effect as ImageEffect));
+            _effectList.Add(effect.GetType().ToString().Replace("RkoOuttaNowhere.Images.Effects.", ""), (effect as ImageEffect));
         }
 
         /// <summary>
@@ -85,6 +91,16 @@ namespace RkoOuttaNowhere.Images
                 var obj = this;
                 _effectList[effect].LoadContent(ref obj);
             }
+        }
+
+        public void AddFadeEffect()
+        {
+            string s = "RkoOuttaNowhere.Images.Effects.FadeEffect";
+            FadeEffect = new FadeEffect();
+            _effectList[s] = FadeEffect;
+            _effectList[s].IsActive = true;
+            var obj = this;
+            _effectList[s].LoadContent(ref obj);
         }
 
         /// <summary>
@@ -195,6 +211,7 @@ namespace RkoOuttaNowhere.Images
         {
             foreach (var effect in _effectList)
             {
+                
                 if(effect.Value.IsActive)
                     effect.Value.Update(gametime);
             }
