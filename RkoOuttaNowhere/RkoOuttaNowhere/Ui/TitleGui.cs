@@ -6,6 +6,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using RkoOuttaNowhere.Screens;
+
 namespace RkoOuttaNowhere.Ui
 {
     class TitleGui : Gui
@@ -28,7 +30,7 @@ namespace RkoOuttaNowhere.Ui
             _panels.Add(_mainMenu);
 
             // Create the new game, load game, options, and quit buttons
-            _position = new Vector2(Screens.ScreenManager.Instance.Dimensions.X / 2 - 171, Screens.ScreenManager.Instance.Dimensions.Y / 2);
+            _position = new Vector2(ScreenManager.Instance.Dimensions.X / 2 - 171, ScreenManager.Instance.Dimensions.Y / 2 - 25);
             _buttonOffset = new Vector2(0, 100);
             _originOffset = new Vector2(0, 0);
 
