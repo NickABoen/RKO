@@ -1,47 +1,56 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RkoOuttaNowhere.Images;
+using RkoOuttaNowhere.Input;
+using RkoOuttaNowhere.Screens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 namespace RkoOuttaNowhere.Gameplay
 {
-    public class Laser
+    class Laser : GameObject
     {
-        private int _daamage;
-
-        public Laser(Vector2 pos, Vector2 target)
+        private Vector2 _destination;
+        private int damage = 50;
+        private float speed = 400.0f;
+  
+        public Laser(Vector2 start, Vector2 dest)
         {
-
+            _position = start;
+            _destination = dest;
+            _velocity = dest - start;
+            if (_velocity != Vector2.Zero)
+                _velocity.Normalize();
+            _image = new Image();
         }
 
         public void LoadContent() 
         {
-
+            _image.Path = "Gameplay/Laser";
+            _image.Position = _position;
+            _image.LoadContent();
         }
 
-        public void UnloadContent()
+        public void UnloadContent() 
         {
-
+            _image.UnloadContent();
         }
 
-        public void Update(GameTime gametime)
+        public void Update(GameTime gametime) 
         {
-
+            _image.Position += _velocity * speed * (float)gametime.ElapsedGameTime.TotalSeconds;
+            _image.Update(gametime);            
         }
 
-        public void Draw(SpriteBatch spritebatch)
+        public void Draw(SpriteBatch spritebatch) 
         {
-
+            _image.Draw(spritebatch);
         }
 
-        public int getDamage { get { return _daamage; } set { _daamage = value; } }
+        public int getDamage { get { return damage; } }
 
-        public Rectangle getRect()
-        {
-            return Rectangle.Empty;
-        }
+
     }
 }
