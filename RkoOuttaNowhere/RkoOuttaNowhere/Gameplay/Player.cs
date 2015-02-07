@@ -15,45 +15,45 @@ namespace RkoOuttaNowhere.Gameplay
     {
         public Player() : base()
         {
-            position = Vector2.Zero;
-            image = new Image();
+            _position = Vector2.Zero;
+            _image = new Image();
         }
 
         public void LoadContent() 
-        { 
-            image.Path = "Gameplay/player";
-            image.Position = position;
-            image.LoadContent();
+        {
+            _image.Path = "Gameplay/player";
+            _image.Position = _position;
+            _image.LoadContent();
         }
         public void UnloadContent() 
         {
-            image.UnloadContent();
+            _image.UnloadContent();
         }
         public void Update(GameTime gametime) 
         {
 
-            if (InputManager.Instance.KeyDown(Keys.Left) && position.X > 4)
+            if (InputManager.Instance.KeyDown(Keys.Left) && _position.X > 4)
             {
-                position.X-=5;
+                _position.X -= 5;
             }
-            else if (InputManager.Instance.KeyDown(Keys.Right) && position.X < ScreenManager.Instance.Dimensions.X - image.SourceRect.Width)
+            else if (InputManager.Instance.KeyDown(Keys.Right) && _position.X < ScreenManager.Instance.Dimensions.X - _image.SourceRect.Width)
             {
-                position.X+=5;
+                _position.X += 5;
             }
-            else if (InputManager.Instance.KeyDown(Keys.Up) && position.Y > 4)
+            else if (InputManager.Instance.KeyDown(Keys.Up) && _position.Y > 4)
             {
-                position.Y-=5;
+                _position.Y -= 5;
             }
-            else if (InputManager.Instance.KeyDown(Keys.Down) && position.Y < ScreenManager.Instance.Dimensions.Y-image.SourceRect.Height)
+            else if (InputManager.Instance.KeyDown(Keys.Down) && _position.Y < ScreenManager.Instance.Dimensions.Y - _image.SourceRect.Height)
             {
-                position.Y+=5;
+                _position.Y += 5;
             }
-            image.Position = position;
-            image.Update(gametime);
+            _image.Position = _position;
+            _image.Update(gametime);
         }
         public void Draw(SpriteBatch spritebatch) 
         {
-            image.Draw(spritebatch);
+            _image.Draw(spritebatch);
         }
     }
 }
