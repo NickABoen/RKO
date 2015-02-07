@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using RkoOuttaNowhere.Images;
+using RkoOuttaNowhere.Screens;
 
 namespace RkoOuttaNowhere.Gameplay
 {
@@ -52,7 +53,16 @@ namespace RkoOuttaNowhere.Gameplay
         public virtual void SetPosition(Vector2 pos)
         {
             _position = pos;
-            _image.Position = pos;            
+            _image.Position = pos;
+        }
+
+        public Rectangle getRect()
+        {
+
+            Rectangle r = _image.SourceRect;
+            r.X = (int)_image.Position.X;
+            r.Y = (int)_image.Position.Y;
+            return r;
         }
     }
 }

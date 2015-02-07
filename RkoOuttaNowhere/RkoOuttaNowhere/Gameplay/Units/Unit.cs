@@ -60,5 +60,8 @@ namespace RkoOuttaNowhere.Gameplay.Units
         {
             base.Draw(spritebatch);
         }
+
+        public int getHealth { get { return _health; } set { _health = value; } }
+
     }
 }
