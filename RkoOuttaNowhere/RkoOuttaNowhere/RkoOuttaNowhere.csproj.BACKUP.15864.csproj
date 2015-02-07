@@ -35,7 +35,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Gameplay\GameManager.cs" />
+=======
     <Compile Include="GameObject.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Level.cs" />
@@ -44,6 +46,7 @@
     <Compile Include="Gameplay\Units\Behaviour.cs" />
     <Compile Include="Gameplay\Units\Unit.cs" />
     <Compile Include="Gameplay\Units\UnitType.cs" />
+>>>>>>> a41c64bbca31ce294c069d9b9ce2c3b4f976c683
     <Compile Include="Ui\Button.cs" />
     <Compile Include="Ui\Gui.cs" />
     <Compile Include="Ui\GuiPanel.cs" />
@@ -152,6 +155,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
