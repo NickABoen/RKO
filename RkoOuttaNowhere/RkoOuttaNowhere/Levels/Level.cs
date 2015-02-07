@@ -18,8 +18,10 @@ namespace RkoOuttaNowhere.Levels
         private const int FIELD_SIZE = 300;
         private const int FIELD_ORIGIN = 400;
 
-        private int _numLanes;
-        private int _unitStagger;
+        private int _numLanes,
+                    _numWaves,
+                    _waveTimer,
+                    _unitStagger;
 
         private List<Unit> _units;
         public List<Unit> Units
@@ -53,6 +55,8 @@ namespace RkoOuttaNowhere.Levels
 
                 switch (type)
                 {
+                    case "---":
+
                     case "WeakMelee":
                         for (int i = 0; i < num; i++)
                             _units.Add(UnitFactory.CreateWeakMelee());
@@ -133,10 +137,14 @@ namespace RkoOuttaNowhere.Levels
                     using (StreamReader sr = new StreamReader(path))
                     {
                         _numLanes = int.Parse(sr.ReadLine());
+                        _numWaves = int.Parse(sr.ReadLine());
                         while (!sr.EndOfStream)
                         {
                             string[] vals = sr.ReadLine().Split(' ');
-                            list.Add(new Tuple<string, int>(vals[0], int.Parse(vals[1])));
+                            if(vals.Length == 2)
+                                list.Add(new Tuple<string, int>(vals[0], int.Parse(vals[1])));
+                            else
+                                list.Add(new Tuple<string, int>(vals[0], 0));
                         }
                     }
                 }
