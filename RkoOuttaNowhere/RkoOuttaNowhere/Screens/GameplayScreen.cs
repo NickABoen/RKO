@@ -34,7 +34,7 @@ namespace RkoOuttaNowhere.Screens
             _player.LoadContent();
 
             // Test level
-            _currentLevel.LoadContent(1);
+            _currentLevel.LoadContent(2);
         }
 
         public override void UnloadContent()

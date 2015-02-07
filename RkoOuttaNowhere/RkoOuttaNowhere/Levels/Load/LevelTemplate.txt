@@ -1,0 +1,9 @@
+﻿NumLanes
+NumWaves
+--- (Denotes new wave)
+EnemyType NumEmemies
+---
+EnemyType NumEmemies
+EnemyType NumEmemies
+---
+EnemyType NumEmemies

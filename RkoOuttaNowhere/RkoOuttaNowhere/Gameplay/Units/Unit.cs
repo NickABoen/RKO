@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using RkoOuttaNowhere.Input;
+
 namespace RkoOuttaNowhere.Gameplay.Units
 {
     public class Unit : GameObject
@@ -15,6 +17,12 @@ namespace RkoOuttaNowhere.Gameplay.Units
         private float _moveSpeed;
         private bool _moving;
         private Behaviour _behaviour;
+
+        public int Health 
+        { 
+            get { return _health; } 
+            set { _health = value; } 
+        }
 
         public Unit()
             : base()
@@ -47,6 +55,15 @@ namespace RkoOuttaNowhere.Gameplay.Units
         {
             base.Update(gametime);
 
+            // TODO: Remove this, added for debugging purposes
+            if (InputManager.Instance.LeftMouseClick())
+            {
+                if (GetRect().Contains(InputManager.Instance.MousePosition))
+                {
+                    OnDestroy();
+                }
+            }
+
             if (_moving)
             {
                 if (_behaviour == Behaviour.BasicMove)
@@ -61,7 +78,9 @@ namespace RkoOuttaNowhere.Gameplay.Units
             base.Draw(spritebatch);
         }
 
-        public int getHealth { get { return _health; } set { _health = value; } }
-
+        public override void OnDestroy() 
+        {
+            _isActive = false;
+        }
     }
 }
