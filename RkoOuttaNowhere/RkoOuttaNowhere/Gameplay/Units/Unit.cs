@@ -11,7 +11,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
 {
     public class Unit : GameObject
     {
-        private int _health;
+        private int _health, _maxHealth;
         private float _moveSpeed;
         private bool _moving;
         private Behaviour _behaviour;
@@ -22,15 +22,19 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _behaviour = Behaviour.BasicMove;
         }
 
-        public void LoadContent(string path, Vector2 position, float movespeed)
+        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, Behaviour behaviour)
         {
             base.LoadContent();
 
             _position = position;
             _image.Path = path;
+            _image.Position = position;
             _image.LoadContent();
+            _dimensions = new Vector2(_image.SourceRect.Width, _image.SourceRect.Height);
 
             _moveSpeed = movespeed;
+            _maxHealth = maxHealth;
+            _behaviour = behaviour;
             _moving = true;
         }
 
@@ -56,5 +60,8 @@ namespace RkoOuttaNowhere.Gameplay.Units
         {
             base.Draw(spritebatch);
         }
+
+        public int getHealth { get { return _health; } set { _health = value; } }
+
     }
 }

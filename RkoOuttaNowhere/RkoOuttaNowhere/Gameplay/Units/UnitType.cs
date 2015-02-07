@@ -5,15 +5,23 @@ using System.Text;
 
 namespace RkoOuttaNowhere.Gameplay.Units
 {
-    [Flags]
     public enum UnitType
     {
-        StackSmasher,
+        WeakMelee,
+        MediumMelee,
+        StrongMelee,
+        WeakRanged,
+        MediumRanged,
+        StrongRanged
+        
+	/*
+	StackSmasher,
         Worm,
         Trojan,
         Virus,
         BinaryBomb,
         AwesomeFace,
         HotFix, //Quick and cheap, but weak and has little health
+	*/
     }
 }
