@@ -46,7 +46,11 @@ namespace RkoOuttaNowhere.Screens
 
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {
+#if DEBUG
+                ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
+#else
                 ScreenManager.Instance.ChangeScreens(ScreenType.Title);
+#endif
             }
         }
 

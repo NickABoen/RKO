@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Gameplay\GameManager.cs" />
     <Compile Include="Ui\Button.cs" />
     <Compile Include="Ui\Gui.cs" />
     <Compile Include="Ui\GuiPanel.cs" />

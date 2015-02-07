@@ -44,6 +44,8 @@ namespace RkoOuttaNowhere.Screens
             {
                 ScreenManager.Instance.ChangeScreens(ScreenType.GameOver);
             }
+
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
