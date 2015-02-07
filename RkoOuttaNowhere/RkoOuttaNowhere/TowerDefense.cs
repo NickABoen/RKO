@@ -14,12 +14,12 @@ namespace RkoOuttaNowhere
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class TowerDefense : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public TowerDefense()
             : base()
         {
             graphics = new GraphicsDeviceManager(this);

@@ -35,7 +35,19 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
+    <Compile Include="Images\Effects\FadeEffect.cs" />
+    <Compile Include="Images\Effects\ImageEffect.cs" />
+    <Compile Include="Images\Effects\SpriteSheetEffect.cs" />
+    <Compile Include="Images\Image.cs" />
+    <Compile Include="Screens\Camera.cs" />
+    <Compile Include="Screens\GameOverScreen.cs" />
+    <Compile Include="Screens\SplashScreen.cs" />
+    <Compile Include="Screens\LevelSelectScreen.cs" />
+    <Compile Include="Screens\UpgradeScreen.cs" />
+    <Compile Include="Screens\GameplayScreen.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\ScreenManager.cs" />
+    <Compile Include="TowerDefense.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
