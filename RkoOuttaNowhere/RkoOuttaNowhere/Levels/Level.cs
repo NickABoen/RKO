@@ -20,14 +20,16 @@ namespace RkoOuttaNowhere.Levels
 
         private int _numLanes,
                     _numWaves,
-                    _waveTimer,
-                    _unitStagger;
+                    _currentWave;
 
-        private List<Unit> _units;
-        public List<Unit> Units
+        private float _waveTimer,
+                      _elapsedTime;
+
+        private List<Wave> _waves;
+        public List<Wave> Waves
         {
-            get { return _units; }
-            set { _units = value; }
+            get { return _waves; }
+            set { _waves = value; }
         }
 
         private int _levelValue;
@@ -39,12 +41,13 @@ namespace RkoOuttaNowhere.Levels
 
         public Level()
         {
-            _units = new List<Unit>();
+            _waves = new List<Wave>();
         }
 
         public void LoadContent(int levelValue)
         {
             _levelValue = levelValue;
+            _currentWave = -1;
             
             // Load the enemeies into the unit list
             List<Tuple<string, int>> list = LoadFromFile();
@@ -56,68 +59,71 @@ namespace RkoOuttaNowhere.Levels
                 switch (type)
                 {
                     case "---":
-
+                        _waves.Add(new Wave(++_currentWave, _numLanes, FIELD_SIZE, FIELD_ORIGIN));
+                        break;
                     case "WeakMelee":
                         for (int i = 0; i < num; i++)
-                            _units.Add(UnitFactory.CreateWeakMelee());
+                            _waves[_currentWave].AddUnit(UnitFactory.CreateWeakMelee());
                         break;
                     case "MediumMelee":
                         for (int i = 0; i < num; i++)
-                            _units.Add(UnitFactory.CreateMediumMelee());
+                            _waves[_currentWave].AddUnit(UnitFactory.CreateMediumMelee());
                         break;
                     case "StrongMelee":
                         for (int i = 0; i < num; i++)
-                            _units.Add(UnitFactory.CreateStrongMelee());
+                            _waves[_currentWave].AddUnit(UnitFactory.CreateStrongMelee());
                         break;
                     case "WeakRanged":
                         for (int i = 0; i < num; i++)
-                            _units.Add(UnitFactory.CreateWeakRanged());
+                            _waves[_currentWave].AddUnit(UnitFactory.CreateWeakRanged());
                         break;
                     case "MediumRanged":
                         for (int i = 0; i < num; i++)
-                            _units.Add(UnitFactory.CreateMediumRanged());
+                            _waves[_currentWave].AddUnit(UnitFactory.CreateMediumRanged());
                         break;
                     case "StrongRanged":
                         for (int i = 0; i < num; i++)
-                            _units.Add(UnitFactory.CreateStrongRanged());
+                            _waves[_currentWave].AddUnit(UnitFactory.CreateStrongRanged());
                         break;
                     default:
-                        _units.Add(new Unit());
+                        throw new Exception("you cant spell for shit");
                         break;
                 }
             }
+            _currentWave = -1;
 
-            // Create the y values for the lanes
-            int offset = FIELD_SIZE / (_numLanes + 1);
-            _unitStagger = 50;
-
-
-            // Assign the units to a random lane
-            Random r = new Random();
-            int count = 0;
-            foreach (Unit u in _units)
+            foreach (Wave w in _waves)
             {
-                int lane = r.Next(_numLanes - 1);
-                u.SetPosition(new Vector2(0 - count * _unitStagger - u.Dimensions.X, FIELD_ORIGIN + lane * offset));
-                count++;
+                w.LoadContent();
             }
         }
 
         public void UnloadContent()
         {
-            foreach (Unit u in _units)
+            foreach (Wave u in _waves)
                 u.UnloadContent();
         }
 
         public void Update(GameTime gametime)
         {
-            foreach (Unit u in _units)
+            foreach (Wave u in _waves)
                 u.Update(gametime);
+
+            // Update the wave timer
+            if (_currentWave + 1 != _numWaves)
+            {
+                _elapsedTime += (float)gametime.ElapsedGameTime.TotalMilliseconds;
+                if (_elapsedTime >= 5000)
+                {
+                    _waves[++_currentWave].Activate();
+                    _elapsedTime = 0;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            foreach (Unit u in _units)
+            foreach (Wave u in _waves)
                 u.Draw(spritebatch);
         }
 

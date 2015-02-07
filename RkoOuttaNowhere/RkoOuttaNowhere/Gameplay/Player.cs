@@ -23,23 +23,25 @@ namespace RkoOuttaNowhere.Gameplay
             _lasers = new List<Laser>();
         }
 
-        public void LoadContent() 
+        public override void LoadContent() 
         {
+            base.LoadContent();
             _image.Path = "Gameplay/player";
             _image.Position = _position;
             _image.LoadContent();
         }
-        public void UnloadContent() 
+        public override void UnloadContent() 
         {
-            _image.UnloadContent();
+            base.UnloadContent();
 
             foreach(Laser l in _lasers)
             {
                 l.UnloadContent();
             }
         }
-        public void Update(GameTime gametime) 
+        public override void Update(GameTime gametime) 
         {
+            base.Update(gametime);
 
             if (InputManager.Instance.KeyDown(Keys.Left) && _position.X > 4)
             {
@@ -72,8 +74,10 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Update(gametime);
         }
 
-        public void Draw(SpriteBatch spritebatch) 
+        public override void Draw(SpriteBatch spritebatch) 
         {
+            base.Draw(spritebatch);
+
             _image.Draw(spritebatch);
             foreach (Laser l in _lasers)
             {
