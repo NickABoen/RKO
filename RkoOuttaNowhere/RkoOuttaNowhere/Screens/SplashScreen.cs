@@ -14,17 +14,18 @@ namespace RkoOuttaNowhere.Screens
 {
     public class SplashScreen : GameScreen
     {
+        private bool _loaded;
+
         public SplashScreen()
             : base()
         {
-
+            
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-
-            _backgroundImage.Path = "splash_background";
+            _backgroundImage.Path = "backgrounds/splash";
             _backgroundImage.LoadContent();
         }
 
@@ -36,6 +37,12 @@ namespace RkoOuttaNowhere.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (!_loaded)
+            {
+                ScreenManager.Instance.LoadAll();
+                _loaded = true;
+            }
 
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {

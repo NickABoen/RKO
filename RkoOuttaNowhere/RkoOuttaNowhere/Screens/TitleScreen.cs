@@ -12,9 +12,9 @@ using RkoOuttaNowhere.Input;
 
 namespace RkoOuttaNowhere.Screens
 {
-    public class GameOverScreen : GameScreen
+    public class TitleScreen : GameScreen
     {
-        public GameOverScreen()
+        public TitleScreen()
             : base()
         {
 
@@ -23,7 +23,7 @@ namespace RkoOuttaNowhere.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            _backgroundImage.Path = "backgrounds/game_over";
+            _backgroundImage.Path = "backgrounds/title";
             _backgroundImage.LoadContent();
         }
 
@@ -32,17 +32,21 @@ namespace RkoOuttaNowhere.Screens
             base.UnloadContent();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (InputManager.Instance.KeyPressed(Keys.G))
+            if (InputManager.Instance.KeyPressed(Keys.Enter))
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Title);
+                ScreenManager.Instance.ChangeScreens(ScreenType.LevelSelect);
+            }
+            else if (InputManager.Instance.KeyPressed(Keys.U))
+            {
+                ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
         }

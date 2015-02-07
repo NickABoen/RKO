@@ -45,6 +45,7 @@
     <Compile Include="Screens\ScreenType.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\LevelSelectScreen.cs" />
+    <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Screens\UpgradeScreen.cs" />
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
@@ -61,13 +62,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\backgrounds\gameplay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\backgrounds\game_over.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\backgrounds\level_select.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\backgrounds\splash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\backgrounds\title.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\backgrounds\upgrade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\fade.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\player.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\splash_background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
