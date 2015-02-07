@@ -7,11 +7,11 @@ namespace RkoOuttaNowhere.Gameplay.Units
 {
     public enum UnitType
     {
-        StackSmasher,
-        Worm,
-        Trojan,
-        Virus,
-        BinaryBomb,
-        AwesomeFace
+        WeakMelee,
+        MediumMelee,
+        StrongMelee,
+        WeakRanged,
+        MediumRanged,
+        StrongRanged
     }
 }
