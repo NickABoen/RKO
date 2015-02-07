@@ -39,6 +39,7 @@
     <Compile Include="Images\Effects\ImageEffect.cs" />
     <Compile Include="Images\Effects\SpriteSheetEffect.cs" />
     <Compile Include="Images\Image.cs" />
+    <Compile Include="Input\InputManager.cs" />
     <Compile Include="Screens\Camera.cs" />
     <Compile Include="Screens\GameOverScreen.cs" />
     <Compile Include="Screens\ScreenType.cs" />
@@ -60,6 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

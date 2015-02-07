@@ -25,7 +25,7 @@ namespace RkoOuttaNowhere.Screens
         private GameScreen _currentScreen, _newScreen;
         private List<GameScreen> _screens;
 
-        public Image Image;
+        public Image _image;
         public Camera Camera;
 
         public Vector2 Dimensions { private set; get; }
@@ -59,6 +59,12 @@ namespace RkoOuttaNowhere.Screens
             IsTransitioning = false;
             _screens = new List<GameScreen>();
 
+            _image = new Image();
+            _image.Path = "fade";
+            _image.Scale = Dimensions;
+            _image.Alpha = 0.5f;
+            //_image.AddFadeEffect();
+
             Initialize();
         }
 
@@ -84,9 +90,10 @@ namespace RkoOuttaNowhere.Screens
         public void ChangeScreens(ScreenType type)
         {
             _newScreen = _screens[(int)type];
-            Image.IsActive = true;
-            Image.FadeEffect.Increase = true;
-            Image.Alpha = 0.0f;
+            _image.IsActive = true;
+            _image.FadeEffect.Increase = true;
+            _image.Alpha = 0.0f;
+            _image.ActivateEffect("FadeEffect");
             IsTransitioning = true;
         }
 
@@ -98,16 +105,16 @@ namespace RkoOuttaNowhere.Screens
         {
             if (IsTransitioning)
             {
-                Image.Update(gameTime);
-                if (Image.Alpha == 1.0f)
+                _image.Update(gameTime);
+                if (_image.Alpha == 1.0f)
                 {
                     _currentScreen.UnloadContent();
                     _currentScreen = _newScreen;
                     _currentScreen.LoadContent();
                 }
-                else if (Image.Alpha == 0.0f)
+                else if (_image.Alpha == 0.0f)
                 {
-                    Image.IsActive = false;
+                    _image.IsActive = false;
                     IsTransitioning = false;
                 }
             }
@@ -121,7 +128,7 @@ namespace RkoOuttaNowhere.Screens
         {
             this.Content = Content;
             _currentScreen.LoadContent();
-            //Image.LoadContent();
+            _image.LoadContent();
         }
 
         /// <summary>
@@ -130,7 +137,7 @@ namespace RkoOuttaNowhere.Screens
         public void UnloadContent()
         {
             _currentScreen.UnloadContent();
-            //Image.UnloadContent();
+            _image.UnloadContent();
         }
 
         /// <summary>
@@ -151,7 +158,7 @@ namespace RkoOuttaNowhere.Screens
         {
             _currentScreen.Draw(spriteBatch);
             if (IsTransitioning)
-                Image.Draw(spriteBatch);
+                _image.Draw(spriteBatch);
         }
     }
 }

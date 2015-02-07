@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using RkoOuttaNowhere.Images;
+using RkoOuttaNowhere.Input;
 
 namespace RkoOuttaNowhere.Screens
 {
@@ -42,7 +43,7 @@ namespace RkoOuttaNowhere.Screens
 
         public virtual void Update(GameTime gameTime)
         {
-            //InputManager.Instance.Update();
+            InputManager.Instance.Update();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

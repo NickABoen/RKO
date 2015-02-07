@@ -8,6 +8,7 @@ namespace RkoOuttaNowhere.Screens
     public enum ScreenType
     {
         Splash,
+        Title,
         LevelSelect,
         Gameplay,
         Upgrade,

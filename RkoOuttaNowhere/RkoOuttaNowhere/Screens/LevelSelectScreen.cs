@@ -16,6 +16,8 @@ namespace RkoOuttaNowhere.Screens
         public override void LoadContent()
         {
             base.LoadContent();
+            _backgroundImage.Path = "player";
+            _backgroundImage.LoadContent();
         }
 
         public override void UnloadContent()
