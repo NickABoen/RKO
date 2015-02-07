@@ -17,6 +17,7 @@ namespace RkoOuttaNowhere.Gameplay
         {
             _position = Vector2.Zero;
             _image = new Image();
+            //hi
         }
 
         public void LoadContent() 
