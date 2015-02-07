@@ -107,6 +107,9 @@
     </Content>
     <Content Include="Content\Gameplay\player2.png">
     </Content>
+    <Content Include="Content\testUnit2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\testUnit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

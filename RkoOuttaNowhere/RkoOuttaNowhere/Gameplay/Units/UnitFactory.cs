@@ -41,21 +41,21 @@ namespace RkoOuttaNowhere.Gameplay.Units
         public static Unit CreateWeakRanged()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit", Vector2.Zero, FAST_SPEED, WEAK_HEALTH, Behaviour.BasicMove);
+            u.LoadContent("testUnit2", Vector2.Zero, FAST_SPEED, WEAK_HEALTH, Behaviour.BasicMove);
             return u;
         }
 
         public static Unit CreateMediumRanged()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit", Vector2.Zero, MEDIUM_SPEED, MEDIUM_HEALTH, Behaviour.EvasiveMove);
+            u.LoadContent("testUnit2", Vector2.Zero, MEDIUM_SPEED, MEDIUM_HEALTH, Behaviour.EvasiveMove);
             return u;
         }
 
         public static Unit CreateStrongRanged()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit", Vector2.Zero, MEDIUM_SPEED, STRONG_HEALTH, Behaviour.EvasiveMove);
+            u.LoadContent("testUnit2", Vector2.Zero, MEDIUM_SPEED, STRONG_HEALTH, Behaviour.EvasiveMove);
             return u;
         }
     }
