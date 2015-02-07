@@ -35,7 +35,7 @@ namespace RkoOuttaNowhere.Screens
 
             // Test unit
             Unit u = new Unit();
-            u.LoadContent("testUnit", new Vector2(0, 300), 100);
+            u.LoadContent("testUnit", new Vector2(0, 300), 100, 100);
             _units.Add(u);
         }
 
@@ -63,6 +63,7 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.ChangeScreens(ScreenType.GameOver);
             }
             _player.Update(gameTime);
+            _player.laserHitEnemy(_units);
             // Process units
             foreach (Unit u in _units)
             {

@@ -22,7 +22,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _behaviour = Behaviour.BasicMove;
         }
 
-        public void LoadContent(string path, Vector2 position, float movespeed)
+        public void LoadContent(string path, Vector2 position, float movespeed, int hp)
         {
             base.LoadContent();
 
@@ -32,6 +32,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
 
             _moveSpeed = movespeed;
             _moving = true;
+            _health = hp;
         }
 
         public override void UnloadContent()
@@ -56,5 +57,8 @@ namespace RkoOuttaNowhere.Gameplay.Units
         {
             base.Draw(spritebatch);
         }
+
+        public int getHealth { get { return _health; } set { _health = value; } }
+
     }
 }
