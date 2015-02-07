@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using RkoOuttaNowhere.Images;
+
 namespace RkoOuttaNowhere.Screens
 {
     /// <summary>
@@ -18,13 +20,14 @@ namespace RkoOuttaNowhere.Screens
     public class GameScreen
     {
         protected ContentManager _content;
+        protected Image _backgroundImage;
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public GameScreen()
         {
-
+            _backgroundImage = new Image();
         }
 
         public virtual void LoadContent()
@@ -44,7 +47,7 @@ namespace RkoOuttaNowhere.Screens
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-
+            _backgroundImage.Draw(spriteBatch);
         }
     }
 }

@@ -95,7 +95,8 @@ namespace RkoOuttaNowhere
                         null,
                         null,
                         null,
-                        ScreenManager.Instance.Camera.Transform);
+                //ScreenManager.Instance.Camera.Transform);
+                        Matrix.Identity);
             ScreenManager.Instance.Draw(spriteBatch);
 
             spriteBatch.End();
