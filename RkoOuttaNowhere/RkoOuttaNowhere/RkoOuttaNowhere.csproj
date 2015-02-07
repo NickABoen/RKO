@@ -35,7 +35,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gameplay\GameManager.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Level.cs" />
@@ -102,7 +101,8 @@
     <Content Include="Content\Gameplay\player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Gameplay\player2.png"> </Content>
+    <Content Include="Content\Gameplay\player2.png">
+    </Content>
     <Content Include="Content\testUnit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

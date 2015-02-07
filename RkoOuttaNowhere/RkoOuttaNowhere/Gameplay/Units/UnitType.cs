@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RkoOuttaNowhere.Gameplay.Units
 {
+    [Flags]
     public enum UnitType
     {
         StackSmasher,
@@ -12,6 +13,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
         Trojan,
         Virus,
         BinaryBomb,
-        AwesomeFace
+        AwesomeFace,
+        HotFix, //Quick and cheap, but weak and has little health
     }
 }

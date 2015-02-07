@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RkoOuttaNowhere
 {
-    class Level
+    public class Level
     {
         private string _levelName;
         private int _waveCount;
