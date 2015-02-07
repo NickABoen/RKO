@@ -10,16 +10,18 @@ using Microsoft.Xna.Framework.Input;
 
 using RkoOuttaNowhere.Input;
 using RkoOuttaNowhere.Gameplay.Units;
+using RkoOuttaNowhere.Levels;
 
 namespace RkoOuttaNowhere.Screens
 {
     public class GameplayScreen : GameScreen
     {
-        private List<Unit> _units;
+        private Level _currentLevel;
+
         public GameplayScreen()
             : base()
         {
-            _units = new List<Unit>();
+            _currentLevel = new Level();
         }
 
         public override void LoadContent()
@@ -28,25 +30,20 @@ namespace RkoOuttaNowhere.Screens
             _backgroundImage.Path = "backgrounds/gameplay";
             _backgroundImage.LoadContent();
 
-            // Test unit
-            Unit u = new Unit();
-            u.LoadContent("testUnit", new Vector2(0, 300), 100);
-            _units.Add(u);
+            // Test level
+            _currentLevel.LoadContent(1);
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
 
-            foreach (Unit u in _units)
-            {
-                u.UnloadContent();
-            }
+            _currentLevel.UnloadContent();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gametime)
         {
-            base.Update(gameTime);
+            base.Update(gametime);
             // Process input
             if (InputManager.Instance.KeyPressed(Keys.U))
             {
@@ -57,20 +54,14 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.ChangeScreens(ScreenType.GameOver);
             }
             // Process units
-            foreach (Unit u in _units)
-            {
-                u.Update(gameTime);
-            }
+            _currentLevel.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
             // Process units
-            foreach (Unit u in _units)
-            {
-                u.Draw(spriteBatch);
-            }
+            _currentLevel.Draw(spriteBatch);
         }
     }
 }

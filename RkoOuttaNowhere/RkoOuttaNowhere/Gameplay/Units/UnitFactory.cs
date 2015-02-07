@@ -10,12 +10,12 @@ namespace RkoOuttaNowhere.Gameplay.Units
 {
     public class UnitFactory
     {
-        public static const int WEAK_HEALTH     = 20;
-        public static const int MEDIUM_HEALTH   = 50;
-        public static const int STRONG_HEALTH   = 100;
-        public static const float SLOW_SPEED     = 60;
-        public static const float MEDIUM_SPEED   = 80;
-        public static const float FAST_SPEED     = 100;
+        public const int WEAK_HEALTH     = 20;
+        public const int MEDIUM_HEALTH   = 50;
+        public const int STRONG_HEALTH   = 100;
+        public const float SLOW_SPEED     = 60;
+        public const float MEDIUM_SPEED   = 80;
+        public const float FAST_SPEED     = 100;
 
         public static Unit CreateWeakMelee()
         {

@@ -30,6 +30,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _image.Path = path;
             _image.Position = position;
             _image.LoadContent();
+            _dimensions = new Vector2(_image.SourceRect.Width, _image.SourceRect.Height);
 
             _moveSpeed = movespeed;
             _maxHealth = maxHealth;

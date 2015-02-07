@@ -33,7 +33,7 @@ namespace RkoOuttaNowhere.Ui
         private bool _visible;
         private Image _currentImage;
         private Rectangle _hitbox;
-        private object _value; //  Additional value that can be stored in the Button
+        private object _value; //  Additional levelValue that can be stored in the Button
 
         public List<Image> Images; //Will hold one for each button state
 
