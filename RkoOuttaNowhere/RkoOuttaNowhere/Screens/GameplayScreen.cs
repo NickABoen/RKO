@@ -13,6 +13,7 @@ using RkoOuttaNowhere.Gameplay;
 using RkoOuttaNowhere.Gameplay.Units;
 using RkoOuttaNowhere.Levels;
 using RkoOuttaNowhere.Ui;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Screens
 {
@@ -82,9 +83,13 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
             }
             _player.Update(gametime);
-
+            /* old Collision Detection
             foreach (Wave w in _currentLevel.Waves)
                 _player.laserHitEnemy(w.Units);
+             * */
+
+            PhysicsManager.Instance.FindCollisions();
+
             // Process units
             //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);

@@ -15,17 +15,16 @@ namespace RkoOuttaNowhere.Physics
 
     public class Circle
     {
-        private int p1;
-        private int p2;
-        private double p3;
 
         public float Radius { get; set; }
         public float Diameter { get { return this.Radius * 2; } set { this.Radius = value / 2; } }
-        public Vector2 Center { get; set; }
+        public Vector2 Center { get { return new Vector2(this.Position.X + this.Radius, this.Position.Y + this.Radius); } }
+
+        public Vector2 Position { get; set; }
 
         public Circle(int x, int y, float radius)
         {
-            this.Center = new Vector2((float)x, (float)y);
+            this.Position = new Vector2((float)x, (float)y);
             this.Radius = radius;
         }
 
@@ -60,7 +59,7 @@ namespace RkoOuttaNowhere.Physics
     {
         public float Radius { get; set; }
         public float Diameter { get{return this.Radius*2;} set{this.Radius = value/2;} }
-        public override Circle Circle { get { return new Circle((int)this.Position.X+(int)this.Radius, (int)this.Position.Y+(int)this.Radius, this.Radius); } }
+        public override Circle Circle { get { return new Circle((int)this.Position.X, (int)this.Position.Y, this.Radius); } }
         public override Rectangle Rectangle{get{return new Rectangle((int)this.Position.X,(int)this.Position.Y,(int)this.Diameter, (int)this.Diameter);}}
         public override HitBoxType Type { get { return HitBoxType.Circle; } }
 

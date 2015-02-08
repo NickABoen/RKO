@@ -22,7 +22,7 @@ namespace RkoOuttaNowhere.Physics
         EnemyUnitsVSFirewall = 16
     }
 
-    public struct CollisionJob
+    public class CollisionJob
     {
         public GameObject firstObject;
         public GameObject secondObject;
@@ -84,6 +84,9 @@ namespace RkoOuttaNowhere.Physics
             //Bullsh**
             //Watch this kiddies.
 
+            List<Projectile> allyProjectileRemovalList = new List<Projectile>();
+            List<Unit> enemyUnitsRemovalList = new List<Unit>();
+
             List<Unit> enemyUnitsCloseToAllyProjectile = new List<Unit>();
             foreach(Projectile p in _allyProjectiles)
             {
@@ -91,13 +94,28 @@ namespace RkoOuttaNowhere.Physics
 
                 foreach(Unit eu in enemyUnitsCloseToAllyProjectile)
                 {
-                    if(Intersects(p.HitBox, eu.HitBox))
+                    if (Intersects(p.HitBox, eu.HitBox))
+                    {
                         _collisionQueue.Enqueue(new CollisionJob(CollisionType.AllyProjectilesVSEnemyUnits, p, eu));
+                        if (eu.Damage(p.Damage)) enemyUnitsRemovalList.Add(eu);
+                        p.OnDestroy();
+                        allyProjectileRemovalList.Add(p);
+                    }
                 }
 
                 enemyUnitsCloseToAllyProjectile.Clear();
             }
+            foreach(Projectile p in allyProjectileRemovalList)
+            {
+                _allyProjectiles.Remove(p);
+            }
+            foreach(Unit u in enemyUnitsRemovalList)
+            {
+                _enemyUnits.Remove(u);
+            }
 
+            List<Unit> allyUnitsRemovalList = new List<Unit>();
+            enemyUnitsRemovalList.Clear();
             List<Unit> enemyUnitsCloseToAllyUnits = new List<Unit>();
             foreach(Unit u in _allyUnits)
             {
@@ -106,11 +124,16 @@ namespace RkoOuttaNowhere.Physics
                 foreach(Unit eu in enemyUnitsCloseToAllyUnits)
                 {
                     if (Intersects(u.HitBox, eu.HitBox))
-                        _collisionQueue.Enqueue(new CollisionJob(CollisionType.AllyUnitsVSEnemyUnits, u, eu));
+                    {
+                        //TODO: Unit v. Unit encounters
+                    }
                 }
 
                 enemyUnitsCloseToAllyUnits.Clear();
             }
+
+            allyUnitsRemovalList.Clear();
+            List<Projectile> enemyProjectileRemovalList = new List<Projectile>();
 
             List<Projectile> enemyProjectilesCloseToAllyUnits = new List<Projectile>();
             foreach (Unit u in _allyUnits)
@@ -120,10 +143,22 @@ namespace RkoOuttaNowhere.Physics
                 foreach(Projectile ep in enemyProjectilesCloseToAllyUnits)
                 {
                     if (Intersects(u.HitBox, ep.HitBox))
-                        _collisionQueue.Enqueue(new CollisionJob(CollisionType.EnemyProjectilesVSAllyUnits, ep, u));
+                    {
+                        if (u.Damage(ep.Damage)) allyUnitsRemovalList.Add(u);
+                        ep.OnDestroy();
+                        enemyProjectileRemovalList.Add(ep);
+                    }
                 }
 
                 enemyProjectilesCloseToAllyUnits.Clear();
+            }
+            foreach(Unit u in allyUnitsRemovalList)
+            {
+                _allyUnits.Remove(u);
+            }
+            foreach(Projectile p in enemyProjectileRemovalList)
+            {
+                _enemyProjectiles.Remove(p);
             }
 
             //This will handle the firewall stuff. Since we don't have a 
@@ -135,7 +170,9 @@ namespace RkoOuttaNowhere.Physics
                 foreach(Projectile ep in enemyProjectilesCloseToFirewall)
                 {
                     if (Intersects(_firewall.HitBox, ep.HitBox))
-                        _collisionQueue.Enqueue(new CollisionJob(CollisionType.EnemyProjectilesVSFirewall, ep, _firewall));
+                    {
+                        //TODO: What to do when enemies are shooting at the firewall (damage it obviously)
+                    }
                 }
 
                 List<Unit> enemyUnitsCloseToFirewall = _enemyUnits.Where(x => Vector2.DistanceSquared(_firewall.HitBox.Position, x.HitBox.Position) < Math.Max(_firewall.HitBox.RangeThreshold, x.HitBox.RangeThreshold)).ToList();
@@ -143,7 +180,9 @@ namespace RkoOuttaNowhere.Physics
                 foreach(Unit eu in enemyUnitsCloseToFirewall)
                 {
                     if (Intersects(_firewall.HitBox, eu.HitBox))
-                        _collisionQueue.Enqueue(new CollisionJob(CollisionType.EnemyUnitsVSFirewall, eu, _firewall));
+                    {
+                        //TODO: Handle enemy units running into the wall
+                    }
                 }
 
                 enemyProjectilesCloseToFirewall.Clear();

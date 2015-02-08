@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Input;
 using RkoOuttaNowhere.Screens;
+using RkoOuttaNowhere.Physics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,29 @@ using System.Text;
 
 namespace RkoOuttaNowhere.Gameplay
 {
-    class Projectile : GameObject
+    public class Projectile : GameObject
     {
         protected Vector2 _destination;
         protected int _damage;
         protected float _speed = 400.0f;
         protected string ammo;
 
+        public bool IsAlly { get; set; }
+
         public Projectile()
         {
             _destination = Vector2.Zero;
+            this.IsAlly = false;
         }
 
-        public void LoadContent()
+        public void LoadContent(bool isAlly = false)
         {
             _image.Path = "Gameplay/" + ammo;
             _image.Position = _position;
             _image.LoadContent();
+            this.IsAlly = isAlly;
+
+            PhysicsManager.Instance.AddProjectile(this);
         }
 
         public void UnloadContent()
@@ -36,7 +43,8 @@ namespace RkoOuttaNowhere.Gameplay
 
         public void Update(GameTime gametime)
         {
-            _image.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
+            this.HitBox.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
+            _image.Position = this.HitBox.Position;
             _image.Update(gametime);
         }
 

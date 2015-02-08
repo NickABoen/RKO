@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay.Projectiles
 {
@@ -20,11 +21,14 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
             Damage = dmg;
         }
 
-        public void LoadContent() 
+        public void LoadContent(bool isAlly = false) 
         {
             _image.Path = "Gameplay/Fire";
             _image.Position = _position;
             _image.LoadContent();
+            this.IsAlly = isAlly;
+            this.HitBox = new CircularHitBox(_position, Math.Max(_image.SourceRect.Width, _image.SourceRect.Height));
+            PhysicsManager.Instance.AddProjectile(this);
         }
 
         public void UnloadContent() 
@@ -34,7 +38,8 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
 
         public void Update(GameTime gametime) 
         {
-            _image.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
+            this.HitBox.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
+            _image.Position = this.HitBox.Position;
             _image.Update(gametime);            
         }
 

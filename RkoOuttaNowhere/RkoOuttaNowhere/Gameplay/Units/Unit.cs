@@ -50,6 +50,8 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _behaviour = behaviour;
             _moving = true;
             this.IsAlly = isally;
+
+            PhysicsManager.Instance.AddUnit(this);
         }
 
         public override void UnloadContent()
@@ -89,6 +91,17 @@ namespace RkoOuttaNowhere.Gameplay.Units
         public override void OnDestroy() 
         {
             _isActive = false;
+        }
+
+        public bool Damage(int damage)
+        {
+            this.Health -= damage;
+            if (this.Health <= 0)
+            {
+                this.OnDestroy();
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -83,7 +83,7 @@ namespace RkoOuttaNowhere.Gameplay
             {
                 if (delay%20 == 0)
                 {
-                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo));
+                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo, true));
                     delay = 0;
                 }
                 delay++;

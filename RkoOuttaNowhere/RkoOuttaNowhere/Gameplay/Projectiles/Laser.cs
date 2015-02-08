@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Input;
 using RkoOuttaNowhere.Screens;
+using RkoOuttaNowhere.Physics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,14 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
             Damage = dmg;
         }
 
-        public void LoadContent() 
+        public void LoadContent(bool isAlly = false) 
         {
             _image.Path = "Gameplay/Laser";
             _image.Position = _position;
             _image.LoadContent();
+            this.IsAlly = isAlly;
+            this.HitBox = new CircularHitBox(_position, Math.Max((float)_dimensions.X, (float)_dimensions.Y));
+            PhysicsManager.Instance.AddProjectile(this);
         }
 
         public void UnloadContent() 
