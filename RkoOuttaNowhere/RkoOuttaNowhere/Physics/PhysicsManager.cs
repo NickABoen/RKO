@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RkoOuttaNowhere.Gameplay.Units;
 using RkoOuttaNowhere.Gameplay;
+using RkoOuttaNowhere.Screens;
 
 namespace RkoOuttaNowhere.Physics
 {
@@ -353,8 +355,11 @@ namespace RkoOuttaNowhere.Physics
 
         public void Update(GameTime gameTime)
         {
+            List<Projectile> projectileRemovalList = new List<Projectile>();
             foreach(Projectile p in _allyProjectiles)
             {
+                if (p.IsActive) p.Update(gameTime);
+
                 if(p.HasGravity)
                 {
                     Vector2 tempVel = new Vector2(p.Velocity.X * p.Speed, p.Velocity.Y * p.Speed);
@@ -363,7 +368,21 @@ namespace RkoOuttaNowhere.Physics
                     tempVel.Normalize();
                     p.Velocity = tempVel;
                 }
+
+                if (p.Position.Y > ScreenManager.Instance.Dimensions.Y)
+                {
+                    p.OnDestroy();
+                    projectileRemovalList.Add(p);
+                    continue;
+                }
             }
+
+            foreach(Projectile p in projectileRemovalList)
+            {
+                _allyProjectiles.Remove(p);
+            }
+            projectileRemovalList.Clear();
+
             foreach(Projectile p in _enemyProjectiles)
             {
                 if (p.HasGravity)
@@ -372,6 +391,14 @@ namespace RkoOuttaNowhere.Physics
                     temp.Y += (float)(Gravity * gameTime.ElapsedGameTime.TotalSeconds);
                     p.HitBox.Position = temp;
                 }
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach(Projectile p in _allyProjectiles)
+            {
+                p.Draw(spriteBatch);
             }
         }
     }
