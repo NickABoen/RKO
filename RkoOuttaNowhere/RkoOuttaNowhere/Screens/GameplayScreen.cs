@@ -12,6 +12,7 @@ using RkoOuttaNowhere.Input;
 using RkoOuttaNowhere.Gameplay;
 using RkoOuttaNowhere.Gameplay.Units;
 using RkoOuttaNowhere.Levels;
+using RkoOuttaNowhere.Ui;
 
 namespace RkoOuttaNowhere.Screens
 {
@@ -19,11 +20,13 @@ namespace RkoOuttaNowhere.Screens
     {
         private Player _player;
         private Level _currentLevel;
+
         public GameplayScreen()
             : base()
         {
             _player = new Player();
             _currentLevel = new Level();
+            _gui = new GameplayGui();
         }
 
         public override void LoadContent()
@@ -35,6 +38,9 @@ namespace RkoOuttaNowhere.Screens
 
             // Test level
             _currentLevel.LoadContent(2);
+
+            // Load the gui
+            _gui.LoadContent();
         }
 
         public override void UnloadContent()
@@ -43,6 +49,7 @@ namespace RkoOuttaNowhere.Screens
             _player.UnloadContent();
 
             _currentLevel.UnloadContent();
+            _gui.UnloadContent();
         }
 
         public override void Update(GameTime gametime)
@@ -62,15 +69,21 @@ namespace RkoOuttaNowhere.Screens
             foreach (Wave w in _currentLevel.Waves)
                 _player.laserHitEnemy(w.Units);
             // Process units
+            //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);
+
+            // Update the timer
+            _gui.SetTimer(_currentLevel.WaveCountdown);
+
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            _player.Draw(spriteBatch);
-            // Process units
             _currentLevel.Draw(spriteBatch);
+            _player.Draw(spriteBatch);
+            _gui.Draw(spriteBatch);
         }
     }
 }

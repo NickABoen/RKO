@@ -23,7 +23,8 @@ namespace RkoOuttaNowhere.Levels
                     _currentWave;
 
         private float _waveTimer,
-                      _elapsedTime;
+                      _elapsedTime,
+                      _waveCountdown;
 
         private bool _levelOver,
                      _changingScrens,
@@ -42,6 +43,11 @@ namespace RkoOuttaNowhere.Levels
             get { return _levelValue; }
             set { _levelValue = value; }
         }
+        public float WaveCountdown
+        {
+            get { return _waveCountdown; }
+            set { _waveCountdown = value; }
+        }
 
         public Level()
         {
@@ -52,7 +58,7 @@ namespace RkoOuttaNowhere.Levels
         {
             _levelValue = levelValue;
             _currentWave = -1;
-            
+            _waveTimer = 5000;
             // Load the enemeies into the unit list
             List<Tuple<string, int>> list = LoadFromFile();
             foreach (Tuple<string, int> val in list)
@@ -110,6 +116,8 @@ namespace RkoOuttaNowhere.Levels
 
         public void Update(GameTime gametime)
         {
+            _waveCountdown = _waveTimer - _elapsedTime;
+            
             foreach (Wave u in _waves)
                 u.Update(gametime);
 
