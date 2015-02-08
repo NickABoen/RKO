@@ -33,7 +33,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _behaviour = Behaviour.BasicMove;
         }
 
-        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, Behaviour behaviour, bool isally = false)
+        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, int baseMoney, Behaviour behaviour, bool isally = false)
         {
             base.LoadContent();
 
