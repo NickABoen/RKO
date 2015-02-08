@@ -32,6 +32,16 @@ namespace RkoOuttaNowhere
             }
         }
 
+<<<<<<< HEAD
+        private int _currency,
+                    _health,
+                    _currentWave,
+                    _finalWave;
+
+        private Level _currentLevel;
+
+        //TODO: Add other stats
+=======
         private int _currency, 
                     _health, 
                     _currentWave,
@@ -40,6 +50,7 @@ namespace RkoOuttaNowhere
                     _currentLevel,
                     _highestCompletedLevel;
                     //add upgrades, stats, 
+>>>>>>> b0e0b30f7591acecb6c3883b1f6fe23493c16121
 
         private Screens.ScreenType _lastScreen;
         public Screens.ScreenType LastScreen
@@ -51,6 +62,13 @@ namespace RkoOuttaNowhere
         /// constructor for Game class, sets initial values for game object
         /// </summary>
         /// <param name="curr"> starting curency </param>
+<<<<<<< HEAD
+        public RKOGame(int curr, Level loadLevel = null)
+        {
+            _currency = curr;
+            _health = 0;
+            _currentWave = 0;
+=======
         private RKOGame()
         {
             _currency = 100;
@@ -58,15 +76,19 @@ namespace RkoOuttaNowhere
             _currentLevel = 0;
             _currentWave = 0;
             //finalWave = 30;
+>>>>>>> b0e0b30f7591acecb6c3883b1f6fe23493c16121
 
+            if(loadLevel != null)
+            {
+                SetupLevel(loadLevel);
+            }
         }
 
-        public int getCurrency { get { return _currency; } set { _currency += value; } }
-        public int getHealth { get { return _health; } set { _health = value; } }
-        public int getWavesLeft { get { return (_finalWave - _currentWave); } }
-        public int getCurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
-        public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
-        public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
+<<<<<<< HEAD
+        public int Currency { get { return _currency; } set { _currency += value; } }
+        public int Health { get { return _health; } set { _health = value; } }
+        public int WavesLeft { get { return (_finalWave - _currentWave); } }
+        public Level CurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
 
         /// <summary>
         /// Setup the given level with initial values and get ready to start
@@ -74,8 +96,20 @@ namespace RkoOuttaNowhere
         /// <param name="newLevel">Level to begin</param>
         public void SetupLevel(Level newLevel)
         {
+            _currentLevel = newLevel;
+            _currentWave = 0;
+            //TODO: _finalWave = _currentLevel.getWaveCount;
+
             //TODO: make sure that everything has the right position
         }
+=======
+        public int getCurrency { get { return _currency; } set { _currency += value; } }
+        public int getHealth { get { return _health; } set { _health = value; } }
+        public int getWavesLeft { get { return (_finalWave - _currentWave); } }
+        public int getCurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
+        public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
+        public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
+>>>>>>> b0e0b30f7591acecb6c3883b1f6fe23493c16121
 
         /// <summary>
         /// Perform cleanup operations after a level is completed or the player dies

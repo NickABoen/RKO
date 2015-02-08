@@ -16,6 +16,14 @@ namespace RkoOuttaNowhere.Ui
     {
         protected List<GuiPanel> _panels;
         protected List<Rectangle> HitBoxes;
+        protected int _numClicked;
+
+        public int NumClicked
+        {
+            get { return _numClicked; }
+            set { _numClicked = value; }
+        }
+
 
         public Gui()
         {
@@ -57,6 +65,7 @@ namespace RkoOuttaNowhere.Ui
         public virtual void SetHealth(int health) { }
 
         public virtual void LoadNodes(List<Point> points, Action handler, string path) { }
+        public virtual void AnimateButton(int index) { }
 
         /// <summary>
         /// Return if the mouse is on the gui

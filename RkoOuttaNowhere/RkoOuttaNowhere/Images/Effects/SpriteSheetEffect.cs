@@ -87,7 +87,7 @@ namespace RkoOuttaNowhere.Images.Effects
             }
             // Reset animation if inactive
             else
-                CurrentFrame.X = 1;
+                CurrentFrame.X = 0;
             
             // Set the size of the image
             _image.SourceRect = new Rectangle((int)CurrentFrame.X * FrameWidth, (int)CurrentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
