@@ -24,6 +24,8 @@ namespace RkoOuttaNowhere.Gameplay.Units
             set { _health = value; } 
         }
 
+        public bool IsAlly { get; set; }
+
         public Unit()
             : base()
         {

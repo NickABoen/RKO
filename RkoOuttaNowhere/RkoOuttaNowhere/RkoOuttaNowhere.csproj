@@ -35,10 +35,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameObject.cs" />
     <Compile Include="Gameplay\Laser.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Levels\Wave.cs" />
+    <Compile Include="Physics\HitBox.cs" />
+    <Compile Include="Physics\PhysicsManager.cs" />
     <Compile Include="RKOGame.cs" />
     <Compile Include="Gameplay\GameObject.cs" />
     <Compile Include="Gameplay\Units\Behaviour.cs" />

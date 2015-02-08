@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RkoOuttaNowhere.Levels;
 
 namespace RkoOuttaNowhere
 {
@@ -54,7 +55,7 @@ namespace RkoOuttaNowhere
         {
             _currentLevel = newLevel;
             _currentWave = 0;
-            _finalWave = _currentLevel.getWaveCount;
+            //TODO: _finalWave = _currentLevel.getWaveCount;
 
             //TODO: make sure that everything has the right position
         }

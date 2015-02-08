@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Screens;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay
 {
@@ -16,7 +17,9 @@ namespace RkoOuttaNowhere.Gameplay
     {
         protected Vector2 _position, _velocity, _dimensions;
         protected Image _image;
-        protected bool _isVisible, _isActive;
+        protected bool _isVisible, _isActive, _isCollidable, _hasGravity;
+
+        public HitBox HitBox { get; set; }
 
         public Vector2 Dimensions
         {

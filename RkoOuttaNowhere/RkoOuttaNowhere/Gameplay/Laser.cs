@@ -5,10 +5,16 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay
 {
-    public class Laser
+    public abstract class Projectile:GameObject
+    {
+        public bool IsAlly { get; set; }
+    }
+
+    public class Laser:Projectile
     {
         private int _daamage;
 
