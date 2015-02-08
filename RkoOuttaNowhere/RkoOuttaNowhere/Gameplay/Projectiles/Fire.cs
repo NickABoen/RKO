@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay.Projectiles
 {
@@ -31,19 +30,19 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
             PhysicsManager.Instance.AddProjectile(this);
         }
 
-        public void UnloadContent() 
+        public override void UnloadContent() 
         {
             _image.UnloadContent();
         }
 
-        public void Update(GameTime gametime) 
+        public override void Update(GameTime gametime) 
         {
             this.HitBox.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
             _image.Position = this.HitBox.Position;
             _image.Update(gametime);            
         }
 
-        public void Draw(SpriteBatch spritebatch) 
+        public override void Draw(SpriteBatch spritebatch) 
         {
             _image.Draw(spritebatch);
         }

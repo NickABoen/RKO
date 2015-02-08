@@ -17,7 +17,8 @@ namespace RkoOuttaNowhere.Screens
     public class LevelSelectScreen : GameScreen
     {
         private int _currentWorld,
-                    _currentLevel;
+                    _currentLevel,
+                    _nextLevelProgression;
 
         public LevelSelectScreen()
             : base()
@@ -40,7 +41,8 @@ namespace RkoOuttaNowhere.Screens
             _gui.LoadContent();
             _gui.LoadNodes(points, new Action(HandleNodeClick), "ui/level_select/Node" + (_currentWorld + 1));
 
-            _gui.AnimateButton(_currentLevel);
+            _nextLevelProgression = RKOGame.Instance.getHighestCompletedLevel + 1;
+            _gui.AnimateButton(_nextLevelProgression);
         }
 
         public override void UnloadContent()
@@ -54,13 +56,15 @@ namespace RkoOuttaNowhere.Screens
         {
             base.Update(gameTime);
 
-            if (InputManager.Instance.KeyPressed(Keys.G))
-            {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
-            }
-            else if (InputManager.Instance.KeyPressed(Keys.U))
+            if (InputManager.Instance.KeyPressed(Keys.U))
             {
                 ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
+            }
+
+            if (_nextLevelProgression == RKOGame.Instance.getHighestCompletedLevel)
+            {
+                _nextLevelProgression = RKOGame.Instance.getCurrentLevel + 1;
+                _gui.AnimateButton(_nextLevelProgression);
             }
 
             _gui.Update(gameTime);
@@ -98,8 +102,11 @@ namespace RkoOuttaNowhere.Screens
 
         public void HandleNodeClick()
         {
-            RKOGame.Instance.getCurrentLevel = _gui.NumClicked;
-            ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
+            if (_gui.NumClicked <= _nextLevelProgression)
+            {
+                RKOGame.Instance.getCurrentLevel = _gui.NumClicked;
+                ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
+            }
         }
     }
 }

@@ -30,6 +30,12 @@ namespace RkoOuttaNowhere.Levels
                      _changingScrens,
                      _completed;
 
+        public bool Completed
+        {
+            get { return _completed; }
+            set { _completed = value; }
+        }
+
         private List<Wave> _waves;
         public List<Wave> Waves
         {
@@ -63,7 +69,7 @@ namespace RkoOuttaNowhere.Levels
             _levelValue = levelValue;
             _currentWave = -1;
             _waveTimer = 5000;
-            // Load the enemeies into the unit list
+            // Load the enemies into the unit list
             List<Tuple<string, int>> list = LoadFromFile();
             foreach (Tuple<string, int> val in list)
             {
@@ -111,6 +117,13 @@ namespace RkoOuttaNowhere.Levels
             }
         }
 
+        public void Reinitialize() 
+        {
+            _completed = false;
+            _waves = new List<Wave>();
+            LoadContent(_levelValue);
+        }
+
         public void UnloadContent()
         {
             foreach (Wave u in _waves)
@@ -139,20 +152,11 @@ namespace RkoOuttaNowhere.Levels
             if (_currentWave + 1 == _numWaves)
             {
                 _waveCountdown = 0;
-                _levelOver = true;
+                _completed = true;
                 foreach (Wave w in _waves) 
                 {
                     if (w.Active)
-                        _levelOver = false;
-                }
-
-                if (_levelOver)
-                {
-                    if (!_changingScrens)
-                    {
-                        Screens.ScreenManager.Instance.ChangeScreens(Screens.ScreenType.LevelSelect);
-                        _changingScrens = true;
-                    }
+                        _completed = false;
                 }
             }
         }
