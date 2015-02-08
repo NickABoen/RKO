@@ -21,6 +21,7 @@ namespace RkoOuttaNowhere.Screens
         private Player _player;
         private Level _currentLevel;
         private List<Level> _levels;
+        private Firewall _firewall;
         private int _money, _health;
 
         public GameplayScreen()
@@ -30,6 +31,7 @@ namespace RkoOuttaNowhere.Screens
             _currentLevel = new Level();
             _gui = new GameplayGui();
             _levels = new List<Level>();
+            _firewall = new Firewall();
         }
 
         public override void LoadContent()
@@ -38,6 +40,7 @@ namespace RkoOuttaNowhere.Screens
             _backgroundImage.Path = "backgrounds/gameplay";
             _backgroundImage.LoadContent();
             _player.LoadContent();
+            _firewall.LoadContent();
 
             // Load the levels
             for (int i = 0; i < RKOGame.NUM_LEVELS; i++)
@@ -66,6 +69,7 @@ namespace RkoOuttaNowhere.Screens
 
             _currentLevel.UnloadContent();
             _gui.UnloadContent();
+            _firewall.UnloadContent();
         }
 
         public override void Update(GameTime gametime)
@@ -94,6 +98,9 @@ namespace RkoOuttaNowhere.Screens
             _gui.SetMoney(RKOGame.Instance.getCurrency);
             _gui.SetHealth(RKOGame.Instance.getHealth);
 
+            // Update the firewall
+            _firewall.Update(gametime);
+
             if (_currentLevel.Completed)
             {
                 if (RKOGame.Instance.getHighestCompletedLevel < _currentLevel.LevelValue)
@@ -109,6 +116,7 @@ namespace RkoOuttaNowhere.Screens
         {
             base.Draw(spriteBatch);
             _currentLevel.Draw(spriteBatch);
+            _firewall.Draw(spriteBatch);
             _player.Draw(spriteBatch);
             _gui.Draw(spriteBatch);
         }
