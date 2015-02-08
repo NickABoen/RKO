@@ -46,6 +46,7 @@ namespace RkoOuttaNowhere.Gameplay
             this.HitBox.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
             _image.Position = this.HitBox.Position;
             _image.Update(gametime);
+            
         }
 
         public override void Draw(SpriteBatch spritebatch)
@@ -53,6 +54,7 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Draw(spritebatch);
         }
 
+        public Vector2 Position { get { return _position; } }
         public float Damage { get { return (Upgrade.DamageBoost * _damage); } set { _damage = value; } }
         public float Speed { get { return _speed; } set { _speed = value; } }
         public Upgrades.ammunition Ammo { get { return ammo; } set { ammo = value; } }

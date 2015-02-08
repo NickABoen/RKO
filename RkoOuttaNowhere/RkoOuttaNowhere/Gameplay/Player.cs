@@ -31,7 +31,7 @@ namespace RkoOuttaNowhere.Gameplay
             _ammo = Upgrades.ammunition.Fire;
             _projectiles = new List<Projectile>();
             damageModifier = 0;
-            speedModifier = 20;
+            speedModifier = 1;
 
         }
 
@@ -73,12 +73,19 @@ namespace RkoOuttaNowhere.Gameplay
                 }
                 delay++;
             }
-
-            foreach(Projectile l in _projectiles)
+            try
             {
-                if(l.IsActive)
-                    l.Update(gametime);
+                foreach (Projectile l in _projectiles)
+                {
+                    if (l.Position.Y > ScreenManager.Instance.Dimensions.Y)
+                        l.IsActive = false;
+                    if (l.IsActive)
+                        l.Update(gametime);
+                    else
+                        _projectiles.Remove(l);
+                }
             }
+            catch (Exception e) { };
             _image.Position = _position;
             _image.Rotation = (float)Math.Atan2(_position.Y - InputManager.Instance.MousePosition.Y, _position.X - InputManager.Instance.MousePosition.X);
 
