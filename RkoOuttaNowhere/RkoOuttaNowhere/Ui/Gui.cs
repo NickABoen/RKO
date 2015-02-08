@@ -51,6 +51,8 @@ namespace RkoOuttaNowhere.Ui
                 p.Draw(spriteBatch);
         }
 
+        public virtual void SetTimer(float timer) { }
+
         /// <summary>
         /// Return if the mouse is on the gui
         /// </summary>
