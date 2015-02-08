@@ -23,9 +23,13 @@ namespace RkoOuttaNowhere.Ui
             _topBar = new GuiPanel();
             _position = _imageOffset = _originOffset = Vector2.Zero;
         }
-        
+
         public override void LoadContent()
         {
+            base.LoadContent();
+            _topBar.BackgroundImage.Path = "ui/gameplay/top_bar";
+            _topBar.BackgroundImage.LoadContent();
+
             // Add our panels
             _panels.Add(_topBar);
 
@@ -47,7 +51,7 @@ namespace RkoOuttaNowhere.Ui
             countdown.Scale = new Vector2(2, 2);
             countdown.LoadContent();
             _topBar.Images.Add(countdown);
-            
+
             // Waves Remaining
             Image waves = new Image();
             waves.Path = "ui/gameplay/waves";
@@ -90,7 +94,7 @@ namespace RkoOuttaNowhere.Ui
             health.LoadContent();
             _topBar.Images.Add(health);
         }
-        
+
         public override void UnloadContent()
         {
             base.UnloadContent();
@@ -108,6 +112,40 @@ namespace RkoOuttaNowhere.Ui
             _topBar.Images[3].RedrawText(spriteBatch, Color.White);
             _topBar.Images[5].RedrawText(spriteBatch, Color.White);
             _topBar.Images[7].RedrawText(spriteBatch, Color.White);
+        }
+
+        // Set the timer to the new value
+        public override void SetTimer(float countdown)
+        {
+            if (countdown >= 10000)
+                _topBar.Images[1].Text = ((int)(countdown / 1000)).ToString();
+            else if (countdown > 0)
+                _topBar.Images[1].Text = (countdown / 1000).ToString("0.0");
+            else
+                _topBar.Images[1].Text = "0";
+        }
+
+        // Set the waves remaining to the new value
+        public override void SetWaves(int waves)
+        {
+            _topBar.Images[3].Text = waves.ToString();
+        }
+
+        // Set the money to the new value
+        public override void SetMoney(int money)
+        {
+            _topBar.Images[5].Text = money.ToString();
+        }
+
+        // Set the health to the new value
+        public override void SetHealth(int health)
+        {
+            _topBar.Images[7].Text = health.ToString();
+        }
+
+        public void HandleNewGame(object sender, EventArgs e)
+        {
+            Console.WriteLine("New Game");
         }
     }
 }

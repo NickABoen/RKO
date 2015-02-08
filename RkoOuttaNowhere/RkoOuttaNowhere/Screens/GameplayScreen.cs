@@ -61,8 +61,7 @@ namespace RkoOuttaNowhere.Screens
             // Process input
             if (InputManager.Instance.KeyPressed(Keys.U))
             {
-                //ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
-                _player.upgradeDamage(Upgrades.upgrades.Damage);
+                ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
             }
             else if (InputManager.Instance.KeyPressed(Keys.X))
             {
