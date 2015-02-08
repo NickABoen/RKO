@@ -95,7 +95,15 @@ namespace RkoOuttaNowhere.Screens
             _gui.SetMoney(RKOGame.Instance.getCurrency);
             _gui.SetHealth(RKOGame.Instance.getHealth);
 
-            
+            if (_currentLevel.Completed)
+            {
+                if (RKOGame.Instance.getHighestCompletedLevel < _currentLevel.LevelValue)
+                    RKOGame.Instance.getHighestCompletedLevel = _currentLevel.LevelValue;
+                
+                // Change the screens
+                if(!ScreenManager.Instance.IsTransitioning)
+                    ScreenManager.Instance.ChangeScreens(ScreenType.LevelSelect);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

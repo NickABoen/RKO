@@ -30,6 +30,12 @@ namespace RkoOuttaNowhere.Levels
                      _changingScrens,
                      _completed;
 
+        public bool Completed
+        {
+            get { return _completed; }
+            set { _completed = value; }
+        }
+
         private List<Wave> _waves;
         public List<Wave> Waves
         {
@@ -139,20 +145,11 @@ namespace RkoOuttaNowhere.Levels
             if (_currentWave + 1 == _numWaves)
             {
                 _waveCountdown = 0;
-                _levelOver = true;
+                _completed = true;
                 foreach (Wave w in _waves) 
                 {
                     if (w.Active)
-                        _levelOver = false;
-                }
-
-                if (_levelOver)
-                {
-                    if (!_changingScrens)
-                    {
-                        Screens.ScreenManager.Instance.ChangeScreens(Screens.ScreenType.LevelSelect);
-                        _changingScrens = true;
-                    }
+                        _completed = false;
                 }
             }
         }

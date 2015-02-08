@@ -12,6 +12,7 @@ namespace RkoOuttaNowhere.Ui
     {
         private List<Button> _nodes;
         private Action _nodeHandler;
+        private int _currentLevel;
 
         public LevelSelectGui()
             : base()
@@ -72,7 +73,13 @@ namespace RkoOuttaNowhere.Ui
 
         public override void AnimateButton(int index)
         {
+            // Clear last image
+            _nodes[_currentLevel].Images[0].IsActive = false;
+
+            // Animate new one
+            _currentLevel = index;
             _nodes[index].Images[0].IsActive = true;
+            
         }
     }
 }

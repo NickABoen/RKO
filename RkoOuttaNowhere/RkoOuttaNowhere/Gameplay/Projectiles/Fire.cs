@@ -20,25 +20,25 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
             Damage = dmg;
         }
 
-        public void LoadContent() 
+        public override void LoadContent() 
         {
             _image.Path = "Gameplay/Fire";
             _image.Position = _position;
             _image.LoadContent();
         }
 
-        public void UnloadContent() 
+        public override void UnloadContent() 
         {
             _image.UnloadContent();
         }
 
-        public void Update(GameTime gametime) 
+        public override void Update(GameTime gametime) 
         {
             _image.Position += _velocity * _speed * (float)gametime.ElapsedGameTime.TotalSeconds;
             _image.Update(gametime);            
         }
 
-        public void Draw(SpriteBatch spritebatch) 
+        public override void Draw(SpriteBatch spritebatch) 
         {
             _image.Draw(spritebatch);
         }
