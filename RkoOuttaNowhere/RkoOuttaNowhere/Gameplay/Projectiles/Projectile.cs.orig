@@ -14,8 +14,9 @@ namespace RkoOuttaNowhere.Gameplay
     public class Projectile : GameObject
     {
         protected Vector2 _destination;
-        protected float _speed = 400.0f, _damage;
-        protected Upgrades.ammunition ammo;
+        protected int _damage;
+        protected float _speed = 400.0f;
+        protected string ammo;
 
         public bool IsAlly { get; set; }
 
@@ -23,12 +24,15 @@ namespace RkoOuttaNowhere.Gameplay
         {
             _destination = Vector2.Zero;
             this.IsAlly = false;
-            _damage = Upgrade.Fire;
         }
 
+<<<<<<< HEAD
         public void LoadContent(bool isAlly = false)
+=======
+        public override void LoadContent()
+>>>>>>> b83ef518dceea0aef59fea99de7afbaa2343616a
         {
-            _image.Path = "Gameplay/" + ammo.ToString();
+            _image.Path = "Gameplay/" + ammo;
             _image.Position = _position;
             _image.LoadContent();
             this.IsAlly = isAlly;
@@ -53,14 +57,11 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Draw(spritebatch);
         }
 
-        public float Damage { get { return (Upgrade.DamageBoost * _damage); } set { _damage = value; } }
+        public int Damage { get { return _damage; } set { _damage = value; } }
         public float Speed { get { return _speed; } set { _speed = value; } }
-        public Upgrades.ammunition Ammo { get { return ammo; } set { ammo = value; } }
+        public string Ammo { get { return ammo; } set { ammo = value; } }
 
-        public override void OnDestroy()
-        {
-            _isActive = false;
-        }
+
 
     }
 }

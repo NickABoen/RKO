@@ -43,17 +43,24 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.LoadAll();
                 _loaded = true;
             }
-            else
+
+            if (_loaded && gameTime.TotalGameTime.Seconds >= 2)
+            {
                 ScreenManager.Instance.ChangeFast(ScreenType.Title);
-            
+            }
 
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Title);
-            }
-
-            if (InputManager.Instance.KeyPressed(Keys.Space))
+<<<<<<< HEAD
+#if DEBUG
                 ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
+#else
+                ScreenManager.Instance.ChangeScreens(ScreenType.Title);
+#endif
+=======
+                ScreenManager.Instance.ChangeFast(ScreenType.Title);
+>>>>>>> a95d59ab0a2e521845c15585dabdc336f2ec6d87
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using RkoOuttaNowhere.Gameplay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RkoOuttaNowhere.Levels;
-using RkoOuttaNowhere.Gameplay;
 
 namespace RkoOuttaNowhere
 {
@@ -69,11 +69,47 @@ namespace RkoOuttaNowhere
         public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
         public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
 
+<<<<<<< HEAD
+        /// <summary>
+        /// Setup the given level with initial values and get ready to start
+        /// </summary>
+        /// <param name="newLevel">Level to begin</param>
+        public void SetupLevel(Level newLevel)
+        {
+            //TODO: make sure that everything has the right position
+        }
+
+        /// <summary>
+        /// Perform cleanup operations after a level is completed or the player dies
+        /// </summary>
+        public void CleanLevel()
+        {
+            //TODO: Implement CleanLevel()
+        }
+
+        /// <summary>
+        /// Effectively the update method of most of the main game features. This
+        /// Is where cooldowns will occur and AI's will tick
+        /// </summary>
+        public void Update()
+        {
+            
+        }
+
+        /// <summary>
+        /// Draw the elements on the game screen
+        /// </summary>
+        public void Draw()
+        {
+
+        }
+=======
         public void AddMoney(int value)
         {
             _currency += (int)Math.Ceiling(value * Upgrade.MoneyBoost);
         }
     
+>>>>>>> 35ede919c296615ce9ce13dc5b51587a012ce3dc
 
     }
 }
