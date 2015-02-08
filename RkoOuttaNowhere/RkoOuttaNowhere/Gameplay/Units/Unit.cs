@@ -13,7 +13,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
 {
     public class Unit : GameObject
     {
-        private int _health, _maxHealth;
+        private int _health, _maxHealth, _baseMoney;
         private float _moveSpeed;
         private bool _moving;
         private Behaviour _behaviour;
@@ -30,7 +30,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _behaviour = Behaviour.BasicMove;
         }
 
-        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, Behaviour behaviour)
+        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, int baseMoney, Behaviour behaviour)
         {
             base.LoadContent();
 
@@ -39,6 +39,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _image.Position = position;
             _image.LoadContent();
             _dimensions = new Vector2(_image.SourceRect.Width, _image.SourceRect.Height);
+            _baseMoney = baseMoney;
 
             _moveSpeed = movespeed;
             _maxHealth = _health = maxHealth;

@@ -10,9 +10,11 @@ namespace RkoOuttaNowhere.Gameplay.Units
 {
     public class UnitFactory
     {
+        // Health
         public const int WEAK_HEALTH     = 20;
         public const int MEDIUM_HEALTH   = 50;
         public const int STRONG_HEALTH   = 100;
+        // Speed
         public const float SLOW_SPEED     = 60;
         public const float MEDIUM_SPEED   = 80;
         public const float FAST_SPEED     = 100;
