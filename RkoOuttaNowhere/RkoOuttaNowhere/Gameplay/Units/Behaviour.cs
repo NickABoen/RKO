@@ -5,6 +5,7 @@ using System.Text;
 
 namespace RkoOuttaNowhere.Gameplay.Units
 {
+    [Flags]
     public enum Behaviour
     {
         BasicMove,

@@ -23,7 +23,11 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
             Damage = dmg;
         }
 
+<<<<<<< HEAD
         public void LoadContent(bool isAlly = false) 
+=======
+        public override void LoadContent() 
+>>>>>>> b83ef518dceea0aef59fea99de7afbaa2343616a
         {
             _image.Path = "Gameplay/Laser";
             _image.Position = _position;

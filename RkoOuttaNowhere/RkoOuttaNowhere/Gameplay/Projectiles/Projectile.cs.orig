@@ -26,7 +26,11 @@ namespace RkoOuttaNowhere.Gameplay
             this.IsAlly = false;
         }
 
+<<<<<<< HEAD
         public void LoadContent(bool isAlly = false)
+=======
+        public override void LoadContent()
+>>>>>>> b83ef518dceea0aef59fea99de7afbaa2343616a
         {
             _image.Path = "Gameplay/" + ammo;
             _image.Position = _position;
@@ -57,10 +61,7 @@ namespace RkoOuttaNowhere.Gameplay
         public float Speed { get { return _speed; } set { _speed = value; } }
         public string Ammo { get { return ammo; } set { ammo = value; } }
 
-        public override void OnDestroy()
-        {
-            _isActive = false;
-        }
+
 
     }
 }

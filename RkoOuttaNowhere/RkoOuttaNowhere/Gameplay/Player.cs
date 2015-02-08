@@ -67,7 +67,7 @@ namespace RkoOuttaNowhere.Gameplay
             {
                 if (delay%20 == 0)
                 {
-                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo));
+                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo, true));
                     delay = 0;
                 }
                 delay++;
@@ -75,7 +75,8 @@ namespace RkoOuttaNowhere.Gameplay
 
             foreach(Projectile l in _projectiles)
             {
-                l.Update(gametime);
+                if(l.IsActive)
+                    l.Update(gametime);
             }
             _image.Position = _position;
             _image.Update(gametime);
@@ -91,7 +92,8 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Draw(spritebatch);
             foreach (Projectile l in _projectiles)
             {
-                l.Draw(spritebatch);
+                if(l.IsActive)
+                    l.Draw(spritebatch);
             }
         }
 
