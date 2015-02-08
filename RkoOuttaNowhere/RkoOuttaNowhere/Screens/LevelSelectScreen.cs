@@ -28,6 +28,10 @@ namespace RkoOuttaNowhere.Screens
         public override void LoadContent()
         {
             base.LoadContent();
+
+            _currentLevel = RKOGame.Instance.getCurrentLevel;
+            _currentWorld = RKOGame.Instance.getCurrentWorld;
+
             _backgroundImage.Path = "ui/level_select/world" + (_currentWorld + 1);
             _backgroundImage.LoadContent();
 
@@ -94,7 +98,8 @@ namespace RkoOuttaNowhere.Screens
 
         public void HandleNodeClick()
         {
-            Console.WriteLine(_gui.NumClicked.ToString());
+            RKOGame.Instance.getCurrentLevel = _gui.NumClicked;
+            ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
         }
     }
 }

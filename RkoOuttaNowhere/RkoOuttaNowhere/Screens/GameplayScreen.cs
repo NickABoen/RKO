@@ -71,13 +71,10 @@ namespace RkoOuttaNowhere.Screens
             //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);
 
-            // Update the timer
+            // Update the gui
             _gui.SetTimer(_currentLevel.WaveCountdown);
-            // Update the waves remaining
             _gui.SetWaves(_currentLevel.WavesRemaining);
-            // Update the money
             _gui.SetMoney(_money++);
-            // Update the health
             _gui.SetHealth(_health);
 
             
