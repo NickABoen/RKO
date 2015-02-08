@@ -42,7 +42,7 @@ namespace RkoOuttaNowhere.Screens
             _gui.LoadNodes(points, new Action(HandleNodeClick), "ui/level_select/Node" + (_currentWorld + 1));
 
             _nextLevelProgression = RKOGame.Instance.getHighestCompletedLevel + 1;
-            _gui.AnimateButton(_nextLevelProgression);
+            _gui.AnimateButton(_nextLevelProgression % 10);
         }
 
         public override void UnloadContent()
@@ -64,10 +64,32 @@ namespace RkoOuttaNowhere.Screens
             if (_nextLevelProgression == RKOGame.Instance.getHighestCompletedLevel)
             {
                 _nextLevelProgression = RKOGame.Instance.getCurrentLevel + 1;
-                _gui.AnimateButton(_nextLevelProgression);
+                if (_nextLevelProgression % 10 == 0)
+                {
+                    NextWorld();
+                    if (_currentWorld == 3)
+                    {
+                        ScreenManager.Instance.ChangeScreens(ScreenType.Title);
+                    }
+                }
+                _gui.AnimateButton(_nextLevelProgression % 10);
             }
 
             _gui.Update(gameTime);
+        }
+
+        public void NextWorld()
+        {
+            RKOGame.Instance.getCurrentWorld++;
+            if (RKOGame.Instance.getCurrentWorld == 3)
+                ScreenManager.Instance.ChangeScreens(ScreenType.Title);
+            else
+            {
+                _backgroundImage = new Images.Image();
+                LoadContent();
+            }
+            
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -80,8 +102,7 @@ namespace RkoOuttaNowhere.Screens
         public List<Point> LoadFromFile()
         {            
             List<Point> list = new List<Point>();
-            string test = Directory.GetCurrentDirectory();
-            string path = "../../../Content/ui/level_select/world1_coor.txt";
+            string path = "../../../Content/ui/level_select/world" + (_currentWorld + 1) + "_coor.txt";
             try
             {
                 if (File.Exists(path))
@@ -104,7 +125,7 @@ namespace RkoOuttaNowhere.Screens
         {
             if (_gui.NumClicked <= _nextLevelProgression)
             {
-                RKOGame.Instance.getCurrentLevel = _gui.NumClicked;
+                RKOGame.Instance.getCurrentLevel = _gui.NumClicked + 10 * _currentWorld;
                 ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
             }
         }

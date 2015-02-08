@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RkoOuttaNowhere.Gameplay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,7 @@ namespace RkoOuttaNowhere
             _currentLevel = 0;
             _currentWave = 0;
             _highestCompletedLevel = -1;
+            _currentWorld = 0;
         }
 
         public int getCurrency { get { return _currency; } set { _currency += value; } }
@@ -58,7 +60,10 @@ namespace RkoOuttaNowhere
         public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
         public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
 
-        
+        public void AddMoney(int value)
+        {
+            _currency += (int)Math.Ceiling(value * Upgrade.MoneyBoost);
+        }
     
 
     }

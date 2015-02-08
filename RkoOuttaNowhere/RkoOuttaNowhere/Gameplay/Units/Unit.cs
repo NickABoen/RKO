@@ -82,6 +82,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
         public override void OnDestroy() 
         {
             _isActive = false;
+            RKOGame.Instance.AddMoney(_baseMoney);
         }
     }
 }
