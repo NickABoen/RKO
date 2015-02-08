@@ -25,6 +25,13 @@ namespace RkoOuttaNowhere.Images
         private RenderTarget2D _renderTarget;
         private SpriteFont _font;
         private Dictionary<string, ImageEffect> _effectList;
+        private float _rotation;
+
+        public float Rotation
+        {
+            get { return _rotation; }
+            set { _rotation = value; }
+        }
 
         [XmlIgnore]
         public Texture2D Texture;
@@ -222,12 +229,12 @@ namespace RkoOuttaNowhere.Images
         public void Draw(SpriteBatch spriteBatch)
         {
             _origin = new Vector2(SourceRect.Width / 2, SourceRect.Height / 2);
-            spriteBatch.Draw(Texture, Position + _origin, SourceRect, Color.White * Alpha, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(Texture, Position + _origin, SourceRect, Color.White * Alpha, _rotation, _origin, Scale, SpriteEffects.None, 0.0f);
         }
 
         public void RedrawText(SpriteBatch spriteBatch, Color color)
         {
-            ScreenManager.Instance.SpriteBatch.DrawString(_font, Text, Position, color, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);            
+            ScreenManager.Instance.SpriteBatch.DrawString(_font, Text, Position, color, _rotation, _origin, Scale, SpriteEffects.None, 0.0f);            
         }
     }
 }

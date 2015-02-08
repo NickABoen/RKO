@@ -26,21 +26,21 @@ namespace RkoOuttaNowhere.Gameplay.Units
         public static Unit CreateWeakMelee()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit", Vector2.Zero, MEDIUM_SPEED, WEAK_HEALTH, WEAK_MONEY, Behaviour.BasicMove);
+            u.LoadContent("enemies/weakMelee", Vector2.Zero, MEDIUM_SPEED, WEAK_HEALTH, WEAK_MONEY, Behaviour.BasicMove);
             return u;
         }
 
         public static Unit CreateMediumMelee()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit", Vector2.Zero, MEDIUM_SPEED, MEDIUM_HEALTH, MEDIUM_MONEY, Behaviour.AggressiveMove);
+            u.LoadContent("enemies/trojan", Vector2.Zero, MEDIUM_SPEED, MEDIUM_HEALTH, MEDIUM_MONEY, Behaviour.BasicMove);
             return u;
         }
 
         public static Unit CreateStrongMelee()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit", Vector2.Zero, SLOW_SPEED, STRONG_HEALTH, STRONG_MONEY, Behaviour.AggressiveMove);
+            u.LoadContent("enemies/heavyMelee", Vector2.Zero, SLOW_SPEED, STRONG_HEALTH, STRONG_MONEY, Behaviour.BasicMove);
             return u;
         }
 
@@ -54,14 +54,14 @@ namespace RkoOuttaNowhere.Gameplay.Units
         public static Unit CreateMediumRanged()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit2", Vector2.Zero, MEDIUM_SPEED, MEDIUM_HEALTH, MEDIUM_MONEY, Behaviour.EvasiveMove);
+            u.LoadContent("testUnit2", Vector2.Zero, MEDIUM_SPEED, MEDIUM_HEALTH, MEDIUM_MONEY, Behaviour.BasicMove);
             return u;
         }
 
         public static Unit CreateStrongRanged()
         {
             Unit u = new Unit();
-            u.LoadContent("testUnit2", Vector2.Zero, MEDIUM_SPEED, STRONG_HEALTH, STRONG_MONEY, Behaviour.EvasiveMove);
+            u.LoadContent("testUnit2", Vector2.Zero, MEDIUM_SPEED, STRONG_HEALTH, STRONG_MONEY, Behaviour.BasicMove);
             return u;
         }
     }

@@ -79,7 +79,7 @@ namespace RkoOuttaNowhere.Gameplay
                     l.Update(gametime);
             }
             _image.Position = _position;
-            _image.Update(gametime);
+            _image.Rotation = (float)Math.Atan2(_position.Y - InputManager.Instance.MousePosition.Y, _position.X - InputManager.Instance.MousePosition.X);
 
             _stand.Update(gametime);
         }

@@ -2,3 +2,5 @@
 1
 ---
 WeakMelee 1
+StrongMelee 1
+MediumMelee 1
