@@ -12,14 +12,13 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
 {
     class Laser : Projectile
     {  
-        public Laser(Vector2 start, Vector2 dest, int dmg)
+        public Laser(Vector2 start, Vector2 dest, float dmg)
         {
             _position = start;
             _velocity = dest - start;
             if (_velocity != Vector2.Zero)
                 _velocity.Normalize();
             _image = new Image();
-            Damage = dmg;
         }
 
         public override void LoadContent() 

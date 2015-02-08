@@ -74,7 +74,7 @@ namespace RkoOuttaNowhere.Gameplay
             {
                 if (delay%20 == 0)
                 {
-                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo));
+                    _projectiles.Add(ProjectileFactory.Shoot(_position, ammo));
                     delay = 0;
                 }
                 delay++;
@@ -98,7 +98,7 @@ namespace RkoOuttaNowhere.Gameplay
                 l.Draw(spritebatch);
             }
         }
-
+        /*
         /// <summary>
         ///  checks if laser hit enemy unit
         /// </summary>
@@ -125,7 +125,7 @@ namespace RkoOuttaNowhere.Gameplay
                 }
             }
             catch (Exception e) { };
-        }
+        }*/
 
         public void upgradeWeapon(Upgrades.ammunition x)
         {

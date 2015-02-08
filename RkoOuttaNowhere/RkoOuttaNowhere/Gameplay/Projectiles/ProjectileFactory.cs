@@ -14,32 +14,32 @@ namespace RkoOuttaNowhere.Gameplay
         public const int FIRE_DAMAGE = 10;
         public const int LASER_DAMAGE = 15;
 
-        public static Projectile Shoot(Vector2 _position, int damageMod, Upgrades.ammunition x)
+        public static Projectile Shoot(Vector2 _position, Upgrades.ammunition x)
         {
             if (Upgrades.ammunition.Laser == x)
-                return CreateLaserShot(_position, damageMod);
+                return CreateLaserShot(_position);
             else if (Upgrades.ammunition.Fire == x)
-                return CreateFireShot(_position, damageMod);
+                return CreateFireShot(_position);
             else if (Upgrades.ammunition.Gun == x)
-                return CreateGunShot(_position, damageMod);
+                return CreateGunShot(_position);
             return null;
         }
 
-        public static Projectile CreateGunShot(Vector2 _position, int damageMod)
+        public static Projectile CreateGunShot(Vector2 _position)
         {
             return null;
         }
 
-        public static Projectile CreateFireShot(Vector2 _position, int damageMod)
+        public static Projectile CreateFireShot(Vector2 _position)
         {
-            Fire f = new Fire(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), FIRE_DAMAGE + damageMod);
+            Fire f = new Fire(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), FIRE_DAMAGE * Upgrade.DamageBoost);
             f.LoadContent();
             return f;
         }
 
-        public static Projectile CreateLaserShot(Vector2 _position, int damageMod)
+        public static Projectile CreateLaserShot(Vector2 _position)
         {
-            Laser l = new Laser(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), LASER_DAMAGE + damageMod);
+            Laser l = new Laser(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), LASER_DAMAGE * Upgrade.DamageBoost);
             l.LoadContent();
             return l;
         }

@@ -10,7 +10,7 @@ namespace RkoOuttaNowhere.Gameplay
         private static float _damageBoost   = 1.0f,
                              _moneyBoost    = 1.0f,
                              _moneyRate     = 0,
-                             _healthIncrease   = 0,
+                             _healthIncrease= 0,
                              _healthRate    = 0;
 
         public static float HealthRate

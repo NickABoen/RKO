@@ -18,7 +18,7 @@ namespace RkoOuttaNowhere.Screens
 {
     public class GameplayScreen : GameScreen
     {
-        private Player _player;
+        
         private Level _currentLevel;
         private List<Level> _levels;
         private Firewall _firewall;
@@ -86,8 +86,8 @@ namespace RkoOuttaNowhere.Screens
             }
             _player.Update(gametime);
 
-            foreach (Wave w in _currentLevel.Waves)
-                _player.laserHitEnemy(w.Units);
+            /*foreach (Wave w in _currentLevel.Waves)
+                _player.laserHitEnemy(w.Units);*/
             // Process units
             //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);

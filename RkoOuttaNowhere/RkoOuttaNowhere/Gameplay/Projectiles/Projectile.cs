@@ -13,7 +13,6 @@ namespace RkoOuttaNowhere.Gameplay
     class Projectile : GameObject
     {
         protected Vector2 _destination;
-        protected int _damage;
         protected float _speed = 400.0f;
         protected string ammo;
 
@@ -45,7 +44,6 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Draw(spritebatch);
         }
 
-        public int Damage { get { return _damage; } set { _damage = value; } }
         public float Speed { get { return _speed; } set { _speed = value; } }
         public string Ammo { get { return ammo; } set { ammo = value; } }
 
