@@ -94,7 +94,9 @@ namespace RkoOuttaNowhere.Physics
             List<Unit> enemyUnitsCloseToAllyProjectile = new List<Unit>();
             foreach(Projectile p in _allyProjectiles)
             {
-                enemyUnitsCloseToAllyProjectile = _enemyUnits.Where(x => Vector2.DistanceSquared(p.HitBox.Position, x.HitBox.Position) < Math.Max(p.HitBox.RangeThreshold * p.HitBox.RangeThreshold, x.HitBox.RangeThreshold*x.HitBox.RangeThreshold)).ToList();
+                if (!p.IsCollidable) continue;
+
+                enemyUnitsCloseToAllyProjectile = _enemyUnits.Where(x => x.IsCollidable && Vector2.DistanceSquared(p.HitBox.Position, x.HitBox.Position) < Math.Max(p.HitBox.RangeThreshold * p.HitBox.RangeThreshold, x.HitBox.RangeThreshold*x.HitBox.RangeThreshold)).ToList();
 
                 newValue = Vector2.DistanceSquared(p.HitBox.Position, _enemyUnits[0].HitBox.Position);
 
@@ -131,7 +133,9 @@ namespace RkoOuttaNowhere.Physics
             List<Unit> enemyUnitsCloseToAllyUnits = new List<Unit>();
             foreach(Unit u in _allyUnits)
             {
-                enemyUnitsCloseToAllyUnits = _enemyUnits.Where(x => Vector2.DistanceSquared(u.HitBox.Position, x.HitBox.Position) < Math.Max(u.HitBox.RangeThreshold, x.HitBox.RangeThreshold)).ToList();
+                if (!u.IsCollidable) continue;
+
+                enemyUnitsCloseToAllyUnits = _enemyUnits.Where(x => x.IsCollidable && Vector2.DistanceSquared(u.HitBox.Position, x.HitBox.Position) < Math.Max(u.HitBox.RangeThreshold, x.HitBox.RangeThreshold)).ToList();
 
                 foreach(Unit eu in enemyUnitsCloseToAllyUnits)
                 {
@@ -150,7 +154,9 @@ namespace RkoOuttaNowhere.Physics
             List<Projectile> enemyProjectilesCloseToAllyUnits = new List<Projectile>();
             foreach (Unit u in _allyUnits)
             {
-                enemyProjectilesCloseToAllyUnits = _enemyProjectiles.Where(x => Vector2.DistanceSquared(u.HitBox.Position, x.HitBox.Position) < Math.Max(u.HitBox.RangeThreshold, x.HitBox.RangeThreshold)).ToList();
+                if (!u.IsCollidable) continue;
+
+                enemyProjectilesCloseToAllyUnits = _enemyProjectiles.Where(x => x.IsCollidable && Vector2.DistanceSquared(u.HitBox.Position, x.HitBox.Position) < Math.Max(u.HitBox.RangeThreshold, x.HitBox.RangeThreshold)).ToList();
 
                 foreach(Projectile ep in enemyProjectilesCloseToAllyUnits)
                 {

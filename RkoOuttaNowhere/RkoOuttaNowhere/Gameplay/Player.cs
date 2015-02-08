@@ -29,7 +29,6 @@ namespace RkoOuttaNowhere.Gameplay
             _ammo = Upgrades.ammunition.Fire;
             damageModifier = 0;
             speedModifier = 1;
-
         }
 
         public override void LoadContent() 
