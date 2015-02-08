@@ -20,6 +20,7 @@ namespace RkoOuttaNowhere.Screens
     {
         private Player _player;
         private Level _currentLevel;
+        private int _money, _health;
 
         public GameplayScreen()
             : base()
@@ -38,6 +39,8 @@ namespace RkoOuttaNowhere.Screens
 
             // Test level
             _currentLevel.LoadContent(2);
+            _money = 0;
+            _health = 100;
 
             // Load the gui
             _gui.LoadContent();
@@ -70,6 +73,12 @@ namespace RkoOuttaNowhere.Screens
 
             // Update the timer
             _gui.SetTimer(_currentLevel.WaveCountdown);
+            // Update the waves remaining
+            _gui.SetWaves(_currentLevel.WavesRemaining);
+            // Update the money
+            _gui.SetMoney(_money++);
+            // Update the health
+            _gui.SetHealth(_health);
 
             
         }

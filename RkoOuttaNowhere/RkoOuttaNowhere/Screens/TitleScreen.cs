@@ -25,8 +25,11 @@ namespace RkoOuttaNowhere.Screens
         {
             base.LoadContent();
             // Load the background image
-            _backgroundImage.Path = "backgrounds/title";
+            _backgroundImage.Path = "backgrounds/tempTitle";
             _backgroundImage.LoadContent();
+
+            _backgroundImage.ActivateEffect("SpriteSheetEffect");
+            _backgroundImage.IsActive = true;
 
             // Load the gui
             _gui.LoadContent();

@@ -25,7 +25,7 @@ namespace RkoOuttaNowhere.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            _backgroundImage.Path = "backgrounds/splash";
+            _backgroundImage.Path = "backgrounds/title";
             _backgroundImage.LoadContent();
         }
 
@@ -46,7 +46,7 @@ namespace RkoOuttaNowhere.Screens
 
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
+                ScreenManager.Instance.ChangeScreens(ScreenType.Title);
             }
         }
 
