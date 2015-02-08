@@ -61,13 +61,18 @@ namespace RkoOuttaNowhere.Screens
             // Process input
             if (InputManager.Instance.KeyPressed(Keys.U))
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
+                //ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
+                _player.upgradeDamage(Upgrades.upgrades.Damage);
             }
             else if (InputManager.Instance.KeyPressed(Keys.X))
             {
                 ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
             }
             _player.Update(gametime);
+
+            foreach (Wave w in _currentLevel.Waves)
+                _player.laserHitEnemy(w.Units);
+            // Process units
             //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);
 

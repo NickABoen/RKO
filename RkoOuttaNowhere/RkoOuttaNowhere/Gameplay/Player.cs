@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RkoOuttaNowhere.Gameplay.Projectiles;
 using RkoOuttaNowhere.Gameplay.Units;
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Input;
@@ -15,12 +16,20 @@ namespace RkoOuttaNowhere.Gameplay
     public class Player : GameObject
     {
 
-        private List<Laser> _lasers;
+        private List<Projectile> _projectiles;
+        private int damageModifier, delay = 0;
+        private float speedModifier;
+        private Upgrades.ammunition ammo = Upgrades.ammunition.Fire;
+
+
         public Player() : base()
         {
             _position = Vector2.Zero;
             _image = new Image();
-            _lasers = new List<Laser>();
+            _projectiles = new List<Projectile>();
+            damageModifier = 0;
+            speedModifier = 20;
+
         }
 
         public override void LoadContent() 
@@ -30,15 +39,17 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Position = _position;
             _image.LoadContent();
         }
+
         public override void UnloadContent() 
         {
             base.UnloadContent();
 
-            foreach(Laser l in _lasers)
+            foreach(Projectile l in _projectiles)
             {
                 l.UnloadContent();
             }
         }
+
         public override void Update(GameTime gametime) 
         {
             base.Update(gametime);
@@ -59,14 +70,17 @@ namespace RkoOuttaNowhere.Gameplay
             {
                 _position.Y += 5;
             }
-            else if (InputManager.Instance.LeftMouseClick())
+            else if (InputManager.Instance.LeftMouseDown() || InputManager.Instance.LeftMouseClick())
             {
-                Laser l = new Laser(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y));
-                l.LoadContent();
-                _lasers.Add(l);
+                if (delay%20 == 0)
+                {
+                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo));
+                    delay = 0;
+                }
+                delay++;
             }
 
-            foreach(Laser l in _lasers)
+            foreach(Projectile l in _projectiles)
             {
                 l.Update(gametime);
             }
@@ -79,7 +93,7 @@ namespace RkoOuttaNowhere.Gameplay
             base.Draw(spritebatch);
 
             _image.Draw(spritebatch);
-            foreach (Laser l in _lasers)
+            foreach (Projectile l in _projectiles)
             {
                 l.Draw(spritebatch);
             }
@@ -93,17 +107,17 @@ namespace RkoOuttaNowhere.Gameplay
         {
             try
             {
-                foreach (Laser l in _lasers)
+                foreach (Projectile l in _projectiles)
                 {
                     foreach (Unit u in units)
                     {
-                        Rectangle r1 = l.getRect(), r2 = u.GetRect();
                         //might need to check if unit is enemy first?
-                        if (l.getRect().Intersects(u.GetRect()))
+                        if (l.GetRect().Intersects(u.GetRect()))
                         {
-                            _lasers.Remove(l);
-                            if((u.Health = u.Health - l.getDamage) <= 0)
+                            _projectiles.Remove(l);
+                            if((u.Health = u.Health - l.Damage) <= 0)
                             {
+                                u.OnDestroy();
                                 units.Remove(u);
                             }
                         }
@@ -112,6 +126,22 @@ namespace RkoOuttaNowhere.Gameplay
             }
             catch (Exception e) { };
         }
+
+        public void upgradeWeapon(Upgrades.ammunition x)
+        {
+            ammo = x;
+        }
+        public void upgradeDamage(Upgrades.upgrades x)
+        {
+            damageModifier += (int)x;
+        }
+
+        public void upgradeAttackSpeed(Upgrades.upgrades x)
+        {
+            speedModifier -= (float)x;
+        }
+
+        
 
     
     
