@@ -56,25 +56,34 @@ namespace RkoOuttaNowhere.Gameplay
 
             if (InputManager.Instance.KeyDown(Keys.Left) && _position.X > 4)
             {
-                _position.X -= 5;
+                //YARRR code were changed here!
+                Vector2 temp = _position;
+                temp.X -= 5;
+                _position = temp;
             }
             else if (InputManager.Instance.KeyDown(Keys.Right) && _position.X < ScreenManager.Instance.Dimensions.X - _image.SourceRect.Width)
             {
-                _position.X += 5;
+                Vector2 temp = _position;
+                temp.X += 5;
+                _position = temp;
             }
             else if (InputManager.Instance.KeyDown(Keys.Up) && _position.Y > 4)
             {
-                _position.Y -= 5;
+                Vector2 temp = _position;
+                temp.Y -= 5;
+                _position = temp;
             }
             else if (InputManager.Instance.KeyDown(Keys.Down) && _position.Y < ScreenManager.Instance.Dimensions.Y - _image.SourceRect.Height)
             {
-                _position.Y += 5;
+                Vector2 temp = _position;
+                temp.Y += 5;
+                _position = temp;
             }
             else if (InputManager.Instance.LeftMouseDown() || InputManager.Instance.LeftMouseClick())
             {
                 if (delay%20 == 0)
                 {
-                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo));
+                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo, true));
                     delay = 0;
                 }
                 delay++;
@@ -82,7 +91,8 @@ namespace RkoOuttaNowhere.Gameplay
 
             foreach(Projectile l in _projectiles)
             {
-                l.Update(gametime);
+                if(l.IsActive)
+                    l.Update(gametime);
             }
             _image.Position = _position;
             _image.Update(gametime);
@@ -95,7 +105,8 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Draw(spritebatch);
             foreach (Projectile l in _projectiles)
             {
-                l.Draw(spritebatch);
+                if(l.IsActive)
+                    l.Draw(spritebatch);
             }
         }
 

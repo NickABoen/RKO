@@ -9,14 +9,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Screens;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay
 {
     public class GameObject
     {
-        protected Vector2 _position, _velocity, _dimensions;
+        protected Vector2 _position { get { return HitBox.Position; } set { HitBox.Position = value; } }
+        
+        protected Vector2 _velocity, _dimensions;
         protected Image _image;
-        protected bool _isVisible, _isActive;
+        protected bool _isVisible, _isActive, _isCollidable, _hasGravity;
+        
+        public HitBox HitBox { get; set; }
 
         public Vector2 Dimensions
         {
@@ -29,8 +34,14 @@ namespace RkoOuttaNowhere.Gameplay
             set { _isActive = value; }
         }
 
+        public Vector2 Velocity { get { return _velocity; } set { _velocity = value; } }
+
+        public bool HasGravity { get { return _hasGravity; } set { _hasGravity = value; } }
+
         public GameObject()
         {
+            _dimensions = Vector2.Zero;
+            this.HitBox = new RectangularHitBox(Vector2.Zero, (int)_dimensions.X, (int)_dimensions.Y);
             _position = _velocity = Vector2.Zero;
             _image = new Image();
             _isVisible = _isActive = true;
@@ -65,6 +76,7 @@ namespace RkoOuttaNowhere.Gameplay
         {
             _position = pos;
             _image.Position = pos;
+            HitBox.Position = pos;
         }
 
         public Rectangle GetRect()
