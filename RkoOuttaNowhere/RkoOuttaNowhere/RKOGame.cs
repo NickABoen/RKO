@@ -25,22 +25,30 @@ namespace RkoOuttaNowhere
 
         private int _currency, 
                     _health, 
-                    _currentWave, 
+                    _currentWave,
+                    _currentWorld,
                     _finalWave, 
-                    _currentLevel;
+                    _currentLevel,
+                    _highestCompletedLevel;
                     //add upgrades, stats, 
 
+        private Screens.ScreenType _lastScreen;
+        public Screens.ScreenType LastScreen
+        {
+            get { return _lastScreen; }
+            set { _lastScreen = value; }
+        }
         /// <summary>
         /// constructor for Game class, sets initial values for game object
         /// </summary>
         /// <param name="curr"> starting curency </param>
-        public RKOGame()
+        private RKOGame()
         {
             _currency = 100;
             _health = int.MaxValue;
             _currentLevel = 0;
             _currentWave = 0;
-            //finalWave = get currentLevels maxWave
+            //finalWave = 30;
 
         }
 
@@ -48,6 +56,8 @@ namespace RkoOuttaNowhere
         public int getHealth { get { return _health; } set { _health = value; } }
         public int getWavesLeft { get { return (_finalWave - _currentWave); } }
         public int getCurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
+        public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
+        public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
 
         
     

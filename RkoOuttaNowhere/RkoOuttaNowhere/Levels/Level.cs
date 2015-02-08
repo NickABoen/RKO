@@ -100,8 +100,7 @@ namespace RkoOuttaNowhere.Levels
                             _waves[_currentWave].AddUnit(UnitFactory.CreateStrongRanged());
                         break;
                     default:
-                        throw new Exception("you cant spell for shit");
-                        break;
+                        throw new ArgumentException("you cant spell for shit");
                 }
             }
             _currentWave = -1;
