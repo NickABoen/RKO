@@ -56,6 +56,8 @@ namespace RkoOuttaNowhere.Ui
         public virtual void SetMoney(int money) { }
         public virtual void SetHealth(int health) { }
 
+        public virtual void LoadNodes(List<Point> points, Action handler, string path) { }
+
         /// <summary>
         /// Return if the mouse is on the gui
         /// </summary>
