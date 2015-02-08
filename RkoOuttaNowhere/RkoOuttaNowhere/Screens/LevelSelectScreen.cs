@@ -35,12 +35,15 @@ namespace RkoOuttaNowhere.Screens
             List<Point> points = LoadFromFile();
             _gui.LoadContent();
             _gui.LoadNodes(points, new Action(HandleNodeClick), "ui/level_select/Node" + (_currentWorld + 1));
-            
+
+            _gui.AnimateButton(_currentLevel);
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
+
+            _gui.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -55,11 +58,15 @@ namespace RkoOuttaNowhere.Screens
             {
                 ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
             }
+
+            _gui.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+
+            _gui.Draw(spriteBatch);
         }
 
         public List<Point> LoadFromFile()
@@ -85,9 +92,9 @@ namespace RkoOuttaNowhere.Screens
             return list;
         }
 
-        public static void HandleNodeClick()
+        public void HandleNodeClick()
         {
-
+            Console.WriteLine(_gui.NumClicked.ToString());
         }
     }
 }

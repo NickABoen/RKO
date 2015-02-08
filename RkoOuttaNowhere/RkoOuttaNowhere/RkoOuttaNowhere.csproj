@@ -98,7 +98,9 @@
     <Content Include="Content\backgrounds\title.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\backgrounds\upgrade.png" />
+    <Content Include="Content\backgrounds\upgrade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\fade.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

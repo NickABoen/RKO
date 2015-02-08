@@ -7,6 +7,21 @@ namespace RkoOuttaNowhere
 {
     public class RKOGame
     {
+        private static RKOGame _instance;
+        /// <summary>
+        /// Singleton class instance
+        /// </summary>
+        public static RKOGame Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new RKOGame();
+                }
+                return _instance;
+            }
+        }
 
         private int _currency, 
                     _health, 
@@ -19,9 +34,9 @@ namespace RkoOuttaNowhere
         /// constructor for Game class, sets initial values for game object
         /// </summary>
         /// <param name="curr"> starting curency </param>
-        public RKOGame(int curr)
+        public RKOGame()
         {
-            _currency = curr;
+            _currency = 100;
             _health = int.MaxValue;
             _currentLevel = 0;
             _currentWave = 0;

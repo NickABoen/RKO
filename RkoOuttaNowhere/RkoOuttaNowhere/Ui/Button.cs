@@ -172,6 +172,8 @@ namespace RkoOuttaNowhere.Ui
             {
                 _currentImage.Position -= ScreenManager.Instance.Camera.WorldChange;
             }
+
+            _currentImage.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -199,6 +201,14 @@ namespace RkoOuttaNowhere.Ui
                     break;
             }
             _currentImage.Position = pos;
+        }
+
+        public void CenterImages()
+        {
+            foreach (Image i in Images)
+            {
+                i.Position -= new Vector2(i.SourceRect.Width / 4, i.SourceRect.Height / 2);
+            }
         }
     }
 }

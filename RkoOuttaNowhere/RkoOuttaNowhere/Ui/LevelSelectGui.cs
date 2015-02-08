@@ -49,19 +49,30 @@ namespace RkoOuttaNowhere.Ui
         {
             _nodeHandler = handler;
 
+            int count = 0;
             foreach (Point p in points)
             {
                 Button b = new Button();
                 b.LoadContent(path, new Vector2(p.X, p.Y), HandleNodeClick);
+                b.CenterImages();
+                b.Images[0].ActivateEffect("SpriteSheetEffect");
+                b.Images[0].SpriteSheetEffect.AmountOfFrames = new Vector2(2, 1);
+                b.Images[0].SpriteSheetEffect.CurrentFrame = Vector2.Zero;
+                b.Value = count++;
+                b.HitBox = new Rectangle((int)b.Images[0].Position.X, (int)b.Images[0].Position.Y, 32, 32);
                 _nodes.Add(b);
             }
         }
 
         public void HandleNodeClick(object sender, EventArgs e)
         {
-
+            _numClicked = (int)((Button)(sender)).Value;
+            _nodeHandler();
         }
 
-
+        public override void AnimateButton(int index)
+        {
+            _nodes[index].Images[0].IsActive = true;
+        }
     }
 }
