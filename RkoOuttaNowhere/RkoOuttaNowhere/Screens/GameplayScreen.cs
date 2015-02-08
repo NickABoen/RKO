@@ -54,8 +54,7 @@ namespace RkoOuttaNowhere.Screens
         public void Reload() 
         {
             // Unload and reload our level for replay
-            _currentLevel.UnloadContent();
-            _currentLevel.LoadContent(RKOGame.Instance.getCurrentLevel);
+            _currentLevel.Reinitialize();
             // Change to our new level
             _currentLevel = _levels[RKOGame.Instance.getCurrentLevel];
         }

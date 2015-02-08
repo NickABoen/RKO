@@ -43,11 +43,9 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.LoadAll();
                 _loaded = true;
             }
-
-            if (_loaded && gameTime.TotalGameTime.Seconds >= 2)
-            {
+            else
                 ScreenManager.Instance.ChangeFast(ScreenType.Title);
-            }
+            
 
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {

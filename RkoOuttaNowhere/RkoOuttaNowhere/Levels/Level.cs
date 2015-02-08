@@ -69,7 +69,7 @@ namespace RkoOuttaNowhere.Levels
             _levelValue = levelValue;
             _currentWave = -1;
             _waveTimer = 5000;
-            // Load the enemeies into the unit list
+            // Load the enemies into the unit list
             List<Tuple<string, int>> list = LoadFromFile();
             foreach (Tuple<string, int> val in list)
             {
@@ -115,6 +115,13 @@ namespace RkoOuttaNowhere.Levels
             {
                 w.LoadContent();
             }
+        }
+
+        public void Reinitialize() 
+        {
+            _completed = false;
+            _waves = new List<Wave>();
+            LoadContent(_levelValue);
         }
 
         public void UnloadContent()
