@@ -82,6 +82,10 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
             }
             _player.Update(gametime);
+
+            foreach (Wave w in _currentLevel.Waves)
+                _player.laserHitEnemy(w.Units);
+            // Process units
             //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);
 
