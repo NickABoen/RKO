@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using RkoOuttaNowhere.Input;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay.Units
 {
@@ -32,7 +33,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _behaviour = Behaviour.BasicMove;
         }
 
-        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, Behaviour behaviour)
+        public void LoadContent(string path, Vector2 position, float movespeed, int maxHealth, Behaviour behaviour, bool isally = false)
         {
             base.LoadContent();
 
@@ -42,10 +43,13 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _image.LoadContent();
             _dimensions = new Vector2(_image.SourceRect.Width, _image.SourceRect.Height);
 
+            this.HitBox = new RectangularHitBox(position, (int)_dimensions.X, (int)_dimensions.Y);
+
             _moveSpeed = movespeed;
             _maxHealth = maxHealth;
             _behaviour = behaviour;
             _moving = true;
+            this.IsAlly = isally;
         }
 
         public override void UnloadContent()
@@ -70,7 +74,9 @@ namespace RkoOuttaNowhere.Gameplay.Units
             {
                 if (_behaviour == Behaviour.BasicMove)
                 {
-                    _position.X += (float)(_moveSpeed * gametime.ElapsedGameTime.TotalSeconds);
+                    Vector2 temp = _position;
+                    temp.X += (float)(_moveSpeed * gametime.ElapsedGameTime.TotalSeconds);
+                    _position = temp;
                 }
             }
         }

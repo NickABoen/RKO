@@ -44,6 +44,11 @@ namespace RkoOuttaNowhere.Screens
                 _loaded = true;
             }
 
+            if (_loaded && gameTime.TotalGameTime.Seconds >= 2)
+            {
+                ScreenManager.Instance.ChangeFast(ScreenType.Title);
+            }
+
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {
 <<<<<<< HEAD
@@ -53,8 +58,8 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.ChangeScreens(ScreenType.Title);
 #endif
 =======
-                ScreenManager.Instance.ChangeScreens(ScreenType.Gameplay);
->>>>>>> a41c64bbca31ce294c069d9b9ce2c3b4f976c683
+                ScreenManager.Instance.ChangeFast(ScreenType.Title);
+>>>>>>> a95d59ab0a2e521845c15585dabdc336f2ec6d87
             }
         }
 

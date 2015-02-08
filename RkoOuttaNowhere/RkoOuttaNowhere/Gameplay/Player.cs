@@ -45,19 +45,28 @@ namespace RkoOuttaNowhere.Gameplay
 
             if (InputManager.Instance.KeyDown(Keys.Left) && _position.X > 4)
             {
-                _position.X -= 5;
+                //YARRR code were changed here!
+                Vector2 temp = _position;
+                temp.X -= 5;
+                _position = temp;
             }
             else if (InputManager.Instance.KeyDown(Keys.Right) && _position.X < ScreenManager.Instance.Dimensions.X - _image.SourceRect.Width)
             {
-                _position.X += 5;
+                Vector2 temp = _position;
+                temp.X += 5;
+                _position = temp;
             }
             else if (InputManager.Instance.KeyDown(Keys.Up) && _position.Y > 4)
             {
-                _position.Y -= 5;
+                Vector2 temp = _position;
+                temp.Y -= 5;
+                _position = temp;
             }
             else if (InputManager.Instance.KeyDown(Keys.Down) && _position.Y < ScreenManager.Instance.Dimensions.Y - _image.SourceRect.Height)
             {
-                _position.Y += 5;
+                Vector2 temp = _position;
+                temp.Y += 5;
+                _position = temp;
             }
             else if (InputManager.Instance.LeftMouseClick())
             {
