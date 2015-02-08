@@ -41,7 +41,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _dimensions = new Vector2(_image.SourceRect.Width, _image.SourceRect.Height);
 
             _moveSpeed = movespeed;
-            _maxHealth = maxHealth;
+            _maxHealth = _health = maxHealth;
             _behaviour = behaviour;
             _moving = true;
         }
