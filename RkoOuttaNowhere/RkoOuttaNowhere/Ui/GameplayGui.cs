@@ -23,10 +23,10 @@ namespace RkoOuttaNowhere.Ui
             _topBar = new GuiPanel();
             _position = _imageOffset = _originOffset = Vector2.Zero;
         }
-
+        
         public override void LoadContent()
         {
-            base.LoadContent();
+            /*base.LoadContent();
             // Add our panels
             _panels.Add(_topBar);
 
@@ -50,9 +50,9 @@ namespace RkoOuttaNowhere.Ui
             countdown.Scale = new Vector2(2, 2);
             countdown.LoadContent();
             _topBar.Images.Add(countdown);
-            
+            */
         }
-
+        
         public override void UnloadContent()
         {
             base.UnloadContent();
@@ -68,7 +68,7 @@ namespace RkoOuttaNowhere.Ui
             base.Draw(spriteBatch);
         }
 
-        public override void SetTimer(float countdown)
+        /*public override void SetTimer(float countdown)
         {
             _topBar.Images[1].Text = ((int)(countdown)).ToString();
             _topBar.Images[1].LoadContent();
@@ -78,5 +78,6 @@ namespace RkoOuttaNowhere.Ui
         {
             Console.WriteLine("New Game");
         }
+         * */
     }
 }

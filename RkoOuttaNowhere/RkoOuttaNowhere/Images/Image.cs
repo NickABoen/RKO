@@ -75,6 +75,7 @@ namespace RkoOuttaNowhere.Images
             }
 
             // Add it to the list of effects
+            
             _effectList.Add(effect.GetType().ToString().Replace("RkoOuttaNowhere.Images.Effects.", ""), (effect as ImageEffect));
         }
 

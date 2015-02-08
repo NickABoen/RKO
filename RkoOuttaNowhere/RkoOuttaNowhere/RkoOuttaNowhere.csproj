@@ -36,8 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameObject.cs" />
-    <Compile Include="Gameplay\Laser.cs" />
+    <Compile Include="Gameplay\Projectile\Laser.cs" />
     <Compile Include="Gameplay\Player.cs" />
+    <Compile Include="Gameplay\Projectile\Projectile.cs" />
     <Compile Include="Levels\Wave.cs" />
     <Compile Include="RKOGame.cs" />
     <Compile Include="Gameplay\GameObject.cs" />
