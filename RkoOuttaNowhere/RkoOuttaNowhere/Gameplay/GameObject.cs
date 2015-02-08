@@ -34,6 +34,10 @@ namespace RkoOuttaNowhere.Gameplay
             set { _isActive = value; }
         }
 
+        public Vector2 Velocity { get { return _velocity; } set { _velocity = value; } }
+
+        public bool HasGravity { get { return _hasGravity; } set { _hasGravity = value; } }
+
         public GameObject()
         {
             _dimensions = Vector2.Zero;

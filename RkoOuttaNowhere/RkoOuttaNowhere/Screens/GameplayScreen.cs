@@ -87,6 +87,7 @@ namespace RkoOuttaNowhere.Screens
                 _player.laserHitEnemy(w.Units);
              * */
 
+            PhysicsManager.Instance.Update(gametime);
             PhysicsManager.Instance.FindCollisions();
 
             // Process units

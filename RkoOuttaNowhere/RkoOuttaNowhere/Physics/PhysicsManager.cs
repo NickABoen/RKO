@@ -48,6 +48,8 @@ namespace RkoOuttaNowhere.Physics
         private List<Unit> _enemyUnits;
         private GameObject _firewall; //TODO: get some references up in here
 
+        public const double Gravity = 200;
+
         private Queue<CollisionJob> _collisionQueue;
 
         public static PhysicsManager Instance
@@ -83,14 +85,22 @@ namespace RkoOuttaNowhere.Physics
             //What's that? You're not brute forcing if you're culling?
             //Bullsh**
             //Watch this kiddies.
-
+            float testValue = 0, newValue = 0;
             List<Projectile> allyProjectileRemovalList = new List<Projectile>();
             List<Unit> enemyUnitsRemovalList = new List<Unit>();
 
             List<Unit> enemyUnitsCloseToAllyProjectile = new List<Unit>();
             foreach(Projectile p in _allyProjectiles)
             {
-                enemyUnitsCloseToAllyProjectile = _enemyUnits.Where(x => Vector2.DistanceSquared(p.HitBox.Position, x.HitBox.Position) < Math.Max(p.HitBox.RangeThreshold, x.HitBox.RangeThreshold)).ToList();
+                enemyUnitsCloseToAllyProjectile = _enemyUnits.Where(x => Vector2.DistanceSquared(p.HitBox.Position, x.HitBox.Position) < Math.Max(p.HitBox.RangeThreshold * p.HitBox.RangeThreshold, x.HitBox.RangeThreshold*x.HitBox.RangeThreshold)).ToList();
+
+                newValue = Vector2.DistanceSquared(p.HitBox.Position, _enemyUnits[0].HitBox.Position);
+
+                if(testValue != newValue)
+                {
+                    testValue = newValue;
+
+                }
 
                 foreach(Unit eu in enemyUnitsCloseToAllyProjectile)
                 {
@@ -340,5 +350,29 @@ namespace RkoOuttaNowhere.Physics
         }
 
         //public void SetFirewall(Firewall f) { }
+
+        public void Update(GameTime gameTime)
+        {
+            foreach(Projectile p in _allyProjectiles)
+            {
+                if(p.HasGravity)
+                {
+                    Vector2 tempVel = new Vector2(p.Velocity.X * p.Speed, p.Velocity.Y * p.Speed);
+                    tempVel.Y += (float)(Gravity * gameTime.ElapsedGameTime.TotalSeconds);
+                    p.Speed = tempVel.Length();
+                    tempVel.Normalize();
+                    p.Velocity = tempVel;
+                }
+            }
+            foreach(Projectile p in _enemyProjectiles)
+            {
+                if (p.HasGravity)
+                {
+                    Vector2 temp = p.HitBox.Position;
+                    temp.Y += (float)(Gravity * gameTime.ElapsedGameTime.TotalSeconds);
+                    p.HitBox.Position = temp;
+                }
+            }
+        }
     }
 }

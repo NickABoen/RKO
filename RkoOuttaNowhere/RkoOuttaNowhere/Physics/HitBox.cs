@@ -66,7 +66,7 @@ namespace RkoOuttaNowhere.Physics
         public CircularHitBox(Vector2 position, float radius)
         {
             this.Radius = radius;
-            this.RangeThreshold = (int)this.Diameter;
+            this.RangeThreshold = (int)this.Radius;
             this.Position = position;
         }
     }

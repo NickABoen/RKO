@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RkoOuttaNowhere.Images;
-using RkoOuttaNowhere.Physics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using RkoOuttaNowhere.Physics;
 
 namespace RkoOuttaNowhere.Gameplay.Projectiles
 {
@@ -21,13 +21,16 @@ namespace RkoOuttaNowhere.Gameplay.Projectiles
             Damage = dmg;
         }
 
+<<<<<<< HEAD
         public void LoadContent(bool isAlly = false) 
+=======
+        public override void LoadContent() 
+>>>>>>> b83ef518dceea0aef59fea99de7afbaa2343616a
         {
             _image.Path = "Gameplay/Fire";
             _image.Position = _position;
             _image.LoadContent();
             this.IsAlly = isAlly;
-            this.HasGravity = true;
             this.HitBox = new CircularHitBox(_position, Math.Max(_image.SourceRect.Width, _image.SourceRect.Height));
             PhysicsManager.Instance.AddProjectile(this);
         }
