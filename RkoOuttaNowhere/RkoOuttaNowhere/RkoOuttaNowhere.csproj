@@ -133,6 +133,10 @@
     <Content Include="Content\ui\gameplay\timer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ui\level_select\world1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\level_select\world1_coor.txt" />
     <Content Include="Content\ui\title\loadGameClicked.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

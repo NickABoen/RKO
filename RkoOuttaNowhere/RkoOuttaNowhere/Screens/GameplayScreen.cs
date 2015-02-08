@@ -65,7 +65,7 @@ namespace RkoOuttaNowhere.Screens
             }
             else if (InputManager.Instance.KeyPressed(Keys.X))
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.GameOver);
+                ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
             }
             _player.Update(gametime);
             //_player.laserHitEnemy(_units);

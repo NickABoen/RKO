@@ -92,6 +92,11 @@ namespace RkoOuttaNowhere.Screens
             _screens[(int)ScreenType.GameOver].LoadContent();
         }
 
+        public void ChangeFast(ScreenType type)
+        {
+            _currentScreen = _screens[(int)type];
+        }
+
         /// <summary>
         /// Handles a screen changes
         /// </summary>

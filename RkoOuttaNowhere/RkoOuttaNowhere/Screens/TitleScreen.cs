@@ -49,16 +49,6 @@ namespace RkoOuttaNowhere.Screens
 
             // Update the gui
             _gui.Update(gameTime);
-
-            // Check for key presses
-            if (InputManager.Instance.KeyPressed(Keys.Enter))
-            {
-                ScreenManager.Instance.ChangeScreens(ScreenType.LevelSelect);
-            }
-            else if (InputManager.Instance.KeyPressed(Keys.U))
-            {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Upgrade);
-            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -67,6 +57,23 @@ namespace RkoOuttaNowhere.Screens
             
             // Draw the gui
             _gui.Draw(spriteBatch);
+        }
+
+        public static void OnNewGameClick()
+        {
+            ScreenManager.Instance.ChangeScreens(ScreenType.LevelSelect);
+        }
+        public static void OnLoadGameClick()
+        {
+            ScreenManager.Instance.ChangeScreens(ScreenType.LevelSelect);
+        }
+        public static void OnOptionsClick()
+        {
+            ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
+        }
+        public static void OnExitClick()
+        {
+            TowerDefense.ExitGame();
         }
     }
 }

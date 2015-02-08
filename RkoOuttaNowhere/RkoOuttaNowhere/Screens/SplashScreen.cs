@@ -25,7 +25,7 @@ namespace RkoOuttaNowhere.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            _backgroundImage.Path = "backgrounds/title";
+            _backgroundImage.Path = "backgrounds/splash";
             _backgroundImage.LoadContent();
         }
 
@@ -44,9 +44,14 @@ namespace RkoOuttaNowhere.Screens
                 _loaded = true;
             }
 
+            if (_loaded && gameTime.TotalGameTime.Seconds >= 2)
+            {
+                ScreenManager.Instance.ChangeFast(ScreenType.Title);
+            }
+
             if(InputManager.Instance.KeyPressed(Keys.Enter)) 
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.Title);
+                ScreenManager.Instance.ChangeFast(ScreenType.Title);
             }
         }
 
