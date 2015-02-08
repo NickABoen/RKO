@@ -14,7 +14,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
 {
     public class Unit : GameObject
     {
-        private int _health, _maxHealth;
+        private int _health, _maxHealth, _baseMoney;
         private float _moveSpeed;
         private bool _moving;
         private Behaviour _behaviour;
@@ -42,6 +42,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             _image.Position = position;
             _image.LoadContent();
             _dimensions = new Vector2(_image.SourceRect.Width, _image.SourceRect.Height);
+            _baseMoney = baseMoney;
 
             this.HitBox = new RectangularHitBox(position, (int)_dimensions.X, (int)_dimensions.Y);
 
@@ -91,6 +92,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
         public override void OnDestroy() 
         {
             _isActive = false;
+            RKOGame.Instance.AddMoney(_baseMoney);
         }
 
         public bool Damage(int damage)

@@ -48,6 +48,8 @@ namespace RkoOuttaNowhere.Ui
 
         public override void LoadNodes(List<Point> points, Action handler, string path)
         {
+            _nodes.Clear();
+
             _nodeHandler = handler;
 
             int count = 0;

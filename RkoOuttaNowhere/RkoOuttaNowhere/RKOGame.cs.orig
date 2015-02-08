@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RkoOuttaNowhere.Gameplay;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace RkoOuttaNowhere
 
     public class RKOGame
     {
+        public const int NUM_LEVELS = 30;
+
         private static RKOGame _instance;
         /// <summary>
         /// Singleton class instance
@@ -32,25 +35,13 @@ namespace RkoOuttaNowhere
             }
         }
 
-<<<<<<< HEAD
-        private int _currency,
-                    _health,
-                    _currentWave,
-                    _finalWave;
-
-        private Level _currentLevel;
-
-        //TODO: Add other stats
-=======
         private int _currency, 
                     _health, 
                     _currentWave,
                     _currentWorld,
-                    _finalWave, 
                     _currentLevel,
                     _highestCompletedLevel;
                     //add upgrades, stats, 
->>>>>>> b0e0b30f7591acecb6c3883b1f6fe23493c16121
 
         private Screens.ScreenType _lastScreen;
         public Screens.ScreenType LastScreen
@@ -62,54 +53,31 @@ namespace RkoOuttaNowhere
         /// constructor for Game class, sets initial values for game object
         /// </summary>
         /// <param name="curr"> starting curency </param>
-<<<<<<< HEAD
-        public RKOGame(int curr, Level loadLevel = null)
-        {
-            _currency = curr;
-            _health = 0;
-            _currentWave = 0;
-=======
         private RKOGame()
         {
             _currency = 100;
-            _health = int.MaxValue;
+            _health = 100;
             _currentLevel = 0;
             _currentWave = 0;
-            //finalWave = 30;
->>>>>>> b0e0b30f7591acecb6c3883b1f6fe23493c16121
-
-            if(loadLevel != null)
-            {
-                SetupLevel(loadLevel);
-            }
+            _highestCompletedLevel = -1;
+            _currentWorld = 0;
         }
 
-<<<<<<< HEAD
-        public int Currency { get { return _currency; } set { _currency += value; } }
-        public int Health { get { return _health; } set { _health = value; } }
-        public int WavesLeft { get { return (_finalWave - _currentWave); } }
-        public Level CurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
+        public int getCurrency { get { return _currency; } set { _currency += value; } }
+        public int getHealth { get { return _health; } set { _health = value; } }
+        public int getCurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
+        public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
+        public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
 
+<<<<<<< HEAD
         /// <summary>
         /// Setup the given level with initial values and get ready to start
         /// </summary>
         /// <param name="newLevel">Level to begin</param>
         public void SetupLevel(Level newLevel)
         {
-            _currentLevel = newLevel;
-            _currentWave = 0;
-            //TODO: _finalWave = _currentLevel.getWaveCount;
-
             //TODO: make sure that everything has the right position
         }
-=======
-        public int getCurrency { get { return _currency; } set { _currency += value; } }
-        public int getHealth { get { return _health; } set { _health = value; } }
-        public int getWavesLeft { get { return (_finalWave - _currentWave); } }
-        public int getCurrentLevel { get { return _currentLevel; } set { _currentLevel = value; } }
-        public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
-        public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
->>>>>>> b0e0b30f7591acecb6c3883b1f6fe23493c16121
 
         /// <summary>
         /// Perform cleanup operations after a level is completed or the player dies
@@ -135,6 +103,13 @@ namespace RkoOuttaNowhere
         {
 
         }
+=======
+        public void AddMoney(int value)
+        {
+            _currency += (int)Math.Ceiling(value * Upgrade.MoneyBoost);
+        }
+    
+>>>>>>> 35ede919c296615ce9ce13dc5b51587a012ce3dc
 
     }
 }

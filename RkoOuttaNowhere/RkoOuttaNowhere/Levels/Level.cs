@@ -126,16 +126,16 @@ namespace RkoOuttaNowhere.Levels
 
         public void UnloadContent()
         {
-            foreach (Wave u in _waves)
-                u.UnloadContent();
+            foreach (Wave w in _waves)
+                w.UnloadContent();
         }
 
         public void Update(GameTime gametime)
         {
             _waveCountdown = _waveTimer - _elapsedTime;
             
-            foreach (Wave u in _waves)
-                u.Update(gametime);
+            foreach (Wave w in _waves)
+                w.Update(gametime);
 
             // Update the wave timer
             if (_currentWave + 1 != _numWaves)
@@ -163,8 +163,8 @@ namespace RkoOuttaNowhere.Levels
 
         public void Draw(SpriteBatch spritebatch)
         {
-            foreach (Wave u in _waves)
-                u.Draw(spritebatch);
+            foreach (Wave w in _waves)
+                w.Draw(spritebatch);
         }
 
         /// <summary>

@@ -59,6 +59,7 @@ namespace RkoOuttaNowhere
             _currentLevel = 0;
             _currentWave = 0;
             _highestCompletedLevel = -1;
+            _currentWorld = 0;
         }
 
         public int getCurrency { get { return _currency; } set { _currency += value; } }
@@ -67,39 +68,11 @@ namespace RkoOuttaNowhere
         public int getCurrentWorld { get { return _currentWorld; } set { _currentWorld = value; } }
         public int getHighestCompletedLevel { get { return _highestCompletedLevel; } set { _highestCompletedLevel = value; } }
 
-        /// <summary>
-        /// Setup the given level with initial values and get ready to start
-        /// </summary>
-        /// <param name="newLevel">Level to begin</param>
-        public void SetupLevel(Level newLevel)
+        public void AddMoney(int value)
         {
-            //TODO: make sure that everything has the right position
+            _currency += (int)Math.Ceiling(value * Upgrade.MoneyBoost);
         }
-
-        /// <summary>
-        /// Perform cleanup operations after a level is completed or the player dies
-        /// </summary>
-        public void CleanLevel()
-        {
-            //TODO: Implement CleanLevel()
-        }
-
-        /// <summary>
-        /// Effectively the update method of most of the main game features. This
-        /// Is where cooldowns will occur and AI's will tick
-        /// </summary>
-        public void Update()
-        {
-            
-        }
-
-        /// <summary>
-        /// Draw the elements on the game screen
-        /// </summary>
-        public void Draw()
-        {
-
-        }
+    
 
     }
 }

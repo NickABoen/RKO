@@ -35,11 +35,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Gameplay\Firewall.cs" />
     <Compile Include="Gameplay\Projectiles\Fire.cs" />
     <Compile Include="Gameplay\Projectiles\Laser.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Gameplay\Projectiles\Projectile.cs" />
     <Compile Include="Gameplay\Projectiles\ProjectileFactory.cs" />
+    <Compile Include="Gameplay\Upgrade.cs" />
     <Compile Include="Gameplay\Upgrades.cs" />
     <Compile Include="Levels\Wave.cs" />
     <Compile Include="Physics\HitBox.cs" />
@@ -120,6 +122,18 @@
     </Content>
     <Content Include="Content\Gameplay\player2.png">
     </Content>
+    <Content Include="Content\Gameplay\wall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gameplay\wall_25.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gameplay\wall_50.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gameplay\wall_75.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\testUnit2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -144,10 +158,28 @@
     <Content Include="Content\ui\gameplay\timer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ui\level_select\Node3Clicked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\level_select\Node2Clicked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ui\level_select\Node1Clicked.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ui\level_select\Node3Hover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\level_select\Node2Hover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ui\level_select\Node1Hover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\level_select\Node3Neutral.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\level_select\Node2Neutral.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ui\level_select\Node1Neutral.png">
@@ -157,8 +189,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ui\level_select\world1_coor.txt" />
-    <Content Include="Content\ui\level_select\world2.png" />
+    <Content Include="Content\ui\level_select\world2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ui\level_select\world2_coor.txt" />
+    <Content Include="Content\ui\level_select\world3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui\level_select\world3_coor.txt" />
     <Content Include="Content\ui\title\loadGameClicked.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -200,6 +238,33 @@
     </Content>
     <Content Include="Icon.ico" />
     <Content Include="Levels\Load\Level0.txt" />
+    <Content Include="Levels\Load\Level29.txt" />
+    <Content Include="Levels\Load\Level28.txt" />
+    <Content Include="Levels\Load\Level27.txt" />
+    <Content Include="Levels\Load\Level26.txt" />
+    <Content Include="Levels\Load\Level25.txt" />
+    <Content Include="Levels\Load\Level24.txt" />
+    <Content Include="Levels\Load\Level23.txt" />
+    <Content Include="Levels\Load\Level22.txt" />
+    <Content Include="Levels\Load\Level21.txt" />
+    <Content Include="Levels\Load\Level20.txt" />
+    <Content Include="Levels\Load\Level19.txt" />
+    <Content Include="Levels\Load\Level18.txt" />
+    <Content Include="Levels\Load\Level17.txt" />
+    <Content Include="Levels\Load\Level16.txt" />
+    <Content Include="Levels\Load\Level15.txt" />
+    <Content Include="Levels\Load\Level14.txt" />
+    <Content Include="Levels\Load\Level13.txt" />
+    <Content Include="Levels\Load\Level12.txt" />
+    <Content Include="Levels\Load\Level11.txt" />
+    <Content Include="Levels\Load\Level10.txt" />
+    <Content Include="Levels\Load\Level9.txt" />
+    <Content Include="Levels\Load\Level8.txt" />
+    <Content Include="Levels\Load\Level7.txt" />
+    <Content Include="Levels\Load\Level6.txt" />
+    <Content Include="Levels\Load\Level5.txt" />
+    <Content Include="Levels\Load\Level4.txt" />
+    <Content Include="Levels\Load\Level3.txt" />
     <Content Include="Levels\Load\Level2.txt" />
     <Content Include="Levels\Load\Level1.txt" />
     <Content Include="Levels\Load\LevelTemplate.txt" />
