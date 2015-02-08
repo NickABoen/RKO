@@ -60,24 +60,6 @@ namespace RkoOuttaNowhere
             ScreenManager.Instance.GraphicsDevice = GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = spriteBatch;
             ScreenManager.Instance.LoadContent(Content);
-            loadLevels();
-        }
-
-        /// <summary>
-        /// reads level information from file, creates and stores each level object
-        /// </summary>
-        public void loadLevels()
-        {
-            string[] lines = System.IO.File.ReadAllLines("../../../test.txt");
-            foreach (string line in lines)
-            {
-                string[] tokens = line.Replace(" ", "").Split(',');
-                foreach(string token in tokens)
-                {
-                    // Console.Out.WriteLine(token + "\n");
-                    // create and store level objects
-                }
-            }
         }
 
         /// <summary>
