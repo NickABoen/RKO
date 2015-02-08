@@ -21,11 +21,13 @@ namespace RkoOuttaNowhere.Gameplay
         private float speedModifier;
         private Upgrades.ammunition ammo = Upgrades.ammunition.Fire;
 
+        private Image _stand;
+
 
         public Player() : base()
         {
             _position = Vector2.Zero;
-            _image = new Image();
+            _stand = new Image();
             _projectiles = new List<Projectile>();
             damageModifier = 0;
             speedModifier = 20;
@@ -35,9 +37,15 @@ namespace RkoOuttaNowhere.Gameplay
         public override void LoadContent() 
         {
             base.LoadContent();
-            _image.Path = "Gameplay/player";
+            _position = new Vector2(825, 75);
+
+            _image.Path = "Gameplay/gun_placement_dynamic";
             _image.Position = _position;
+            _image.Scale = 2 * Vector2.One;
             _image.LoadContent();
+            _stand.Path = "Gameplay/gun_placement_static";
+            _stand.Position = _position + new Vector2(-12, 20);
+            _stand.LoadContent();
         }
 
         public override void UnloadContent() 
@@ -48,29 +56,14 @@ namespace RkoOuttaNowhere.Gameplay
             {
                 l.UnloadContent();
             }
+            _stand.UnloadContent();
         }
 
         public override void Update(GameTime gametime) 
         {
             base.Update(gametime);
 
-            if (InputManager.Instance.KeyDown(Keys.Left) && _position.X > 4)
-            {
-                _position.X -= 5;
-            }
-            else if (InputManager.Instance.KeyDown(Keys.Right) && _position.X < ScreenManager.Instance.Dimensions.X - _image.SourceRect.Width)
-            {
-                _position.X += 5;
-            }
-            else if (InputManager.Instance.KeyDown(Keys.Up) && _position.Y > 4)
-            {
-                _position.Y -= 5;
-            }
-            else if (InputManager.Instance.KeyDown(Keys.Down) && _position.Y < ScreenManager.Instance.Dimensions.Y - _image.SourceRect.Height)
-            {
-                _position.Y += 5;
-            }
-            else if (InputManager.Instance.LeftMouseDown() || InputManager.Instance.LeftMouseClick())
+            if (InputManager.Instance.LeftMouseDown() || InputManager.Instance.LeftMouseClick())
             {
                 if (delay%20 == 0)
                 {
@@ -86,10 +79,13 @@ namespace RkoOuttaNowhere.Gameplay
             }
             _image.Position = _position;
             _image.Update(gametime);
+
+            _stand.Update(gametime);
         }
 
         public override void Draw(SpriteBatch spritebatch) 
         {
+            _stand.Draw(spritebatch);
             base.Draw(spritebatch);
 
             _image.Draw(spritebatch);
