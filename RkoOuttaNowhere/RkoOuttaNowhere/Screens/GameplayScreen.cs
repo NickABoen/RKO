@@ -20,6 +20,7 @@ namespace RkoOuttaNowhere.Screens
     {
         private Player _player;
         private Level _currentLevel;
+        private List<Level> _levels;
         private int _money, _health;
 
         public GameplayScreen()
@@ -28,6 +29,7 @@ namespace RkoOuttaNowhere.Screens
             _player = new Player();
             _currentLevel = new Level();
             _gui = new GameplayGui();
+            _levels = new List<Level>();
         }
 
         public override void LoadContent()
@@ -37,13 +39,25 @@ namespace RkoOuttaNowhere.Screens
             _backgroundImage.LoadContent();
             _player.LoadContent();
 
-            // Test level
-            _currentLevel.LoadContent(2);
-            _money = 0;
-            _health = 100;
+            // Load the levels
+            for (int i = 0; i < RKOGame.NUM_LEVELS; i++)
+            {
+                Level l = new Level();
+                l.LoadContent(i);
+                _levels.Add(l);
+            }
 
-            // Load the gui
-            _gui.LoadContent();
+                // Load the gui
+                _gui.LoadContent();
+        }
+
+        public void Reload() 
+        {
+            // Unload and reload our level for replay
+            _currentLevel.UnloadContent();
+            _currentLevel.LoadContent(RKOGame.Instance.getCurrentLevel);
+            // Change to our new level
+            _currentLevel = _levels[RKOGame.Instance.getCurrentLevel];
         }
 
         public override void UnloadContent()
@@ -68,14 +82,18 @@ namespace RkoOuttaNowhere.Screens
                 ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
             }
             _player.Update(gametime);
+
+            foreach (Wave w in _currentLevel.Waves)
+                _player.laserHitEnemy(w.Units);
+            // Process units
             //_player.laserHitEnemy(_units);
             _currentLevel.Update(gametime);
 
             // Update the gui
             _gui.SetTimer(_currentLevel.WaveCountdown);
             _gui.SetWaves(_currentLevel.WavesRemaining);
-            _gui.SetMoney(_money++);
-            _gui.SetHealth(_health);
+            _gui.SetMoney(RKOGame.Instance.getCurrency);
+            _gui.SetHealth(RKOGame.Instance.getHealth);
 
             
         }

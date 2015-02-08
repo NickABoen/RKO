@@ -46,7 +46,7 @@ namespace RkoOuttaNowhere.Gameplay.Units
             this.HitBox = new RectangularHitBox(position, (int)_dimensions.X, (int)_dimensions.Y);
 
             _moveSpeed = movespeed;
-            _maxHealth = maxHealth;
+            _maxHealth = _health = maxHealth;
             _behaviour = behaviour;
             _moving = true;
             this.IsAlly = isally;
