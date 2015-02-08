@@ -47,7 +47,7 @@ namespace RkoOuttaNowhere
         private RKOGame()
         {
             _currency = 100;
-            _health = int.MaxValue;
+            _health = 100;
             _currentLevel = 0;
             _currentWave = 0;
             //finalWave = 30;
