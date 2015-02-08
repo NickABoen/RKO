@@ -123,6 +123,10 @@ namespace RkoOuttaNowhere.Screens
                 if (_image.Alpha == 1.0f)
                 {
                     _currentScreen = _newScreen;
+                    if (_currentScreen is GameplayScreen)
+                    {
+                        ((GameplayScreen)_currentScreen).Reload();
+                    }
                 }
                 else if (_image.Alpha == 0.0f)
                 {

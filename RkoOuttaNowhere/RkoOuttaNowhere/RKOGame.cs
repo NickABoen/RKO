@@ -7,6 +7,8 @@ namespace RkoOuttaNowhere
 {
     public class RKOGame
     {
+        public const int NUM_LEVELS = 30;
+
         private static RKOGame _instance;
         /// <summary>
         /// Singleton class instance

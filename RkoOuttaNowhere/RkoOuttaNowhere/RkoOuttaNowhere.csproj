@@ -191,6 +191,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <Content Include="Levels\Load\Level0.txt" />
     <Content Include="Levels\Load\Level2.txt" />
     <Content Include="Levels\Load\Level1.txt" />
     <Content Include="Levels\Load\LevelTemplate.txt" />
