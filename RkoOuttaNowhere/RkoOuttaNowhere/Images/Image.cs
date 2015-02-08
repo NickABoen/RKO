@@ -223,5 +223,10 @@ namespace RkoOuttaNowhere.Images
             _origin = new Vector2(SourceRect.Width / 2, SourceRect.Height / 2);
             spriteBatch.Draw(Texture, Position + _origin, SourceRect, Color.White * Alpha, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);
         }
+
+        public void RedrawText(SpriteBatch spriteBatch, Color color)
+        {
+            ScreenManager.Instance.SpriteBatch.DrawString(_font, Text, Position, color, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);            
+        }
     }
 }

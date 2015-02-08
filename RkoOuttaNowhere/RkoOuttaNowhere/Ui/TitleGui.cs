@@ -38,13 +38,13 @@ namespace RkoOuttaNowhere.Ui
             newGame.LoadContent("ui/title/newGame", _position + _originOffset, HandleNewGame);
             _mainMenu.Buttons.Add(newGame);
             Button loadGame = new Button();
-            loadGame.LoadContent("ui/title/loadGame", _position + _originOffset + _buttonOffset, HandleNewGame);
+            loadGame.LoadContent("ui/title/loadGame", _position + _originOffset + _buttonOffset, HandleLoadGame);
             _mainMenu.Buttons.Add(loadGame);
             Button options = new Button();
-            options.LoadContent("ui/title/options", _position + _originOffset + 2 * _buttonOffset, HandleNewGame);
+            options.LoadContent("ui/title/options", _position + _originOffset + 2 * _buttonOffset, HandleOptions);
             _mainMenu.Buttons.Add(options);
             Button quit = new Button();
-            quit.LoadContent("ui/title/quit", _position + _originOffset + 3 * _buttonOffset, HandleNewGame);
+            quit.LoadContent("ui/title/quit", _position + _originOffset + 3 * _buttonOffset, HandleQuit);
             _mainMenu.Buttons.Add(quit);
         }
 
@@ -63,9 +63,23 @@ namespace RkoOuttaNowhere.Ui
             base.Draw(spriteBatch);
         }
 
+        #region ButtonHandlers
         public void HandleNewGame(object sender, EventArgs e)
         {
-            Console.WriteLine("New Game");
+            TitleScreen.OnNewGameClick();
         }
+        public void HandleLoadGame(object sender, EventArgs e)
+        {
+            TitleScreen.OnLoadGameClick();
+        }
+        public void HandleOptions(object sender, EventArgs e)
+        {
+            TitleScreen.OnOptionsClick();
+        }
+        public void HandleQuit(object sender, EventArgs e)
+        {
+            TitleScreen.OnExitClick();
+        }
+        #endregion
     }
 }

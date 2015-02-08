@@ -18,7 +18,8 @@ namespace RkoOuttaNowhere.Ui
     public class GuiPanel
     {
         public Rectangle Hitbox;
-        public Image Image;
+        public Image BackgroundImage;
+        public List<Image> Images;
         public int SelectedItem;
         [XmlElement("Button")]
         public List<Button> Buttons;
@@ -28,8 +29,9 @@ namespace RkoOuttaNowhere.Ui
         public GuiPanel()
         {
             Hitbox = Rectangle.Empty;
-            Image = new Image();
+            BackgroundImage = new Image();
             Buttons = new List<Button>();
+            Images = new List<Image>();
             Dimensions = Vector2.Zero;
             ButtonDimensions = Vector2.Zero;
             ButtonOffset = Vector2.Zero;
@@ -39,37 +41,41 @@ namespace RkoOuttaNowhere.Ui
 
         public virtual void LoadContent()
         {
-            ButtonOrigin += Image.Position;
+            ButtonOrigin += BackgroundImage.Position;
 
-            Image.LoadContent();
+            BackgroundImage.LoadContent();
             int count = 0;
         }
 
         public virtual void UnloadContent()
         {
-            Image.UnloadContent();
+            BackgroundImage.UnloadContent();
             foreach (Button b in Buttons)
                 b.UnloadContent();
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            Image.Update(gameTime);
+            BackgroundImage.Update(gameTime);
             foreach (Button b in Buttons)
                 b.Update(gameTime);
+            foreach (Image i in Images)
+                i.Update(gameTime);
 
             // Update position based on camera
-            Image.Position -= ScreenManager.Instance.Camera.WorldChange;
+            BackgroundImage.Position -= ScreenManager.Instance.Camera.WorldChange;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Visible)
             {
-                if(Image.Texture != null)
-                    Image.Draw(spriteBatch);
+                if(BackgroundImage.Texture != null)
+                    BackgroundImage.Draw(spriteBatch);
                 foreach (Button b in Buttons)
                     b.Draw(spriteBatch);
+                foreach (Image i in Images)
+                    i.Draw(spriteBatch);
             }
         }
 

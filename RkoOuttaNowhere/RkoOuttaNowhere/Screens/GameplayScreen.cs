@@ -12,6 +12,7 @@ using RkoOuttaNowhere.Input;
 using RkoOuttaNowhere.Gameplay;
 using RkoOuttaNowhere.Gameplay.Units;
 using RkoOuttaNowhere.Levels;
+using RkoOuttaNowhere.Ui;
 
 namespace RkoOuttaNowhere.Screens
 {
@@ -19,11 +20,14 @@ namespace RkoOuttaNowhere.Screens
     {
         private Player _player;
         private Level _currentLevel;
+        private int _money, _health;
+
         public GameplayScreen()
             : base()
         {
             _player = new Player();
             _currentLevel = new Level();
+            _gui = new GameplayGui();
         }
 
         public override void LoadContent()
@@ -35,6 +39,11 @@ namespace RkoOuttaNowhere.Screens
 
             // Test level
             _currentLevel.LoadContent(2);
+            _money = 0;
+            _health = 100;
+
+            // Load the gui
+            _gui.LoadContent();
         }
 
         public override void UnloadContent()
@@ -43,6 +52,7 @@ namespace RkoOuttaNowhere.Screens
             _player.UnloadContent();
 
             _currentLevel.UnloadContent();
+            _gui.UnloadContent();
         }
 
         public override void Update(GameTime gametime)
@@ -55,20 +65,30 @@ namespace RkoOuttaNowhere.Screens
             }
             else if (InputManager.Instance.KeyPressed(Keys.X))
             {
-                ScreenManager.Instance.ChangeScreens(ScreenType.GameOver);
+                ScreenManager.Instance.ChangeFast(ScreenType.GameOver);
             }
             _player.Update(gametime);
             //_player.laserHitEnemy(_units);
-            // Process units
             _currentLevel.Update(gametime);
+
+            // Update the timer
+            _gui.SetTimer(_currentLevel.WaveCountdown);
+            // Update the waves remaining
+            _gui.SetWaves(_currentLevel.WavesRemaining);
+            // Update the money
+            _gui.SetMoney(_money++);
+            // Update the health
+            _gui.SetHealth(_health);
+
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            _player.Draw(spriteBatch);
-            // Process units
             _currentLevel.Draw(spriteBatch);
+            _player.Draw(spriteBatch);
+            _gui.Draw(spriteBatch);
         }
     }
 }

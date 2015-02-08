@@ -17,6 +17,8 @@ namespace RkoOuttaNowhere
     /// </summary>
     public class TowerDefense : Game
     {
+        private static TowerDefense _game;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -26,6 +28,7 @@ namespace RkoOuttaNowhere
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _game = this;
         }
 
         /// <summary>
@@ -40,6 +43,8 @@ namespace RkoOuttaNowhere
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();
 
+            Window.Position = new Point(100, 100);
+            Console.Write(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
             base.Initialize();
         }
 
@@ -120,6 +125,11 @@ namespace RkoOuttaNowhere
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public static void ExitGame()
+        {
+            _game.Exit();
         }
     }
 }
