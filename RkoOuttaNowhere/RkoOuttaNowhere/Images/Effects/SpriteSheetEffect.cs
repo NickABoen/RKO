@@ -46,9 +46,9 @@ namespace RkoOuttaNowhere.Images.Effects
         /// </summary>
         public SpriteSheetEffect()
         {
-            AmountOfFrames = new Vector2(3, 4);
-            CurrentFrame = new Vector2(1, 0);
-            SwitchFrame = 100;
+            AmountOfFrames = new Vector2(3, 2);
+            CurrentFrame = new Vector2(0, 0);
+            SwitchFrame = 500;
             FrameCounter = 0;
         }
 
@@ -76,7 +76,13 @@ namespace RkoOuttaNowhere.Images.Effects
                     CurrentFrame.X++;
                     // Prevent overflow
                     if (CurrentFrame.X * FrameWidth >= _image.Texture.Width)
+                    {
                         CurrentFrame.X = 0;
+                        CurrentFrame.Y++;
+                        if (CurrentFrame.Y * FrameHeight >= _image.Texture.Height)
+                            CurrentFrame.Y = 0;
+                    }
+                        
                 }
             }
             // Reset animation if inactive

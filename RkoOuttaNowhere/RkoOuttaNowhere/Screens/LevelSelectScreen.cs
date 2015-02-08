@@ -23,7 +23,7 @@ namespace RkoOuttaNowhere.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-            _backgroundImage.Path = "backgrounds/level_select";
+            _backgroundImage.Path = "ui/level_select/world1";
             _backgroundImage.LoadContent();
         }
 

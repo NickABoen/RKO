@@ -46,6 +46,7 @@ namespace RkoOuttaNowhere.Screens
         public virtual void Update(GameTime gameTime)
         {
             InputManager.Instance.Update();
+            _backgroundImage.Update(gameTime);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

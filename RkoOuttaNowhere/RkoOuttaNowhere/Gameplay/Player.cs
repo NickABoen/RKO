@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RkoOuttaNowhere.Gameplay.Projectiles;
 using RkoOuttaNowhere.Gameplay.Units;
 using RkoOuttaNowhere.Images;
 using RkoOuttaNowhere.Input;
@@ -14,26 +15,21 @@ namespace RkoOuttaNowhere.Gameplay
 {
     public class Player : GameObject
     {
-        /* upgrades
-         * base damage - +1
-         * attack speed - 
-         * items?
-         * wall upgrade
-         * 
-         */
 
-
-        private List<Projectile> _lasers;
+        private List<Projectile> _projectiles;
         private int damageModifier, delay = 0;
         private float speedModifier;
+        private Upgrades.ammunition ammo = Upgrades.ammunition.Fire;
+
 
         public Player() : base()
         {
             _position = Vector2.Zero;
             _image = new Image();
-            _lasers = new List<Projectile>();
+            _projectiles = new List<Projectile>();
             damageModifier = 0;
             speedModifier = 20;
+
         }
 
         public override void LoadContent() 
@@ -43,15 +39,17 @@ namespace RkoOuttaNowhere.Gameplay
             _image.Position = _position;
             _image.LoadContent();
         }
+
         public override void UnloadContent() 
         {
             base.UnloadContent();
 
-            foreach(Projectile l in _lasers)
+            foreach(Projectile l in _projectiles)
             {
                 l.UnloadContent();
             }
         }
+
         public override void Update(GameTime gametime) 
         {
             base.Update(gametime);
@@ -76,15 +74,13 @@ namespace RkoOuttaNowhere.Gameplay
             {
                 if (delay%20 == 0)
                 {
-                    Projectile l = new Laser(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), damageModifier);
-                    l.LoadContent();
-                    _lasers.Add(l);
+                    _projectiles.Add(ProjectileFactory.Shoot(_position, damageModifier, ammo));
                     delay = 0;
                 }
                 delay++;
             }
 
-            foreach(Projectile l in _lasers)
+            foreach(Projectile l in _projectiles)
             {
                 l.Update(gametime);
             }
@@ -97,7 +93,7 @@ namespace RkoOuttaNowhere.Gameplay
             base.Draw(spritebatch);
 
             _image.Draw(spritebatch);
-            foreach (Projectile l in _lasers)
+            foreach (Projectile l in _projectiles)
             {
                 l.Draw(spritebatch);
             }
@@ -111,14 +107,14 @@ namespace RkoOuttaNowhere.Gameplay
         {
             try
             {
-                foreach (Projectile l in _lasers)
+                foreach (Projectile l in _projectiles)
                 {
                     foreach (Unit u in units)
                     {
                         //might need to check if unit is enemy first?
                         if (l.GetRect().Intersects(u.GetRect()))
                         {
-                            _lasers.Remove(l);
+                            _projectiles.Remove(l);
                             if((u.Health = u.Health - l.Damage) <= 0)
                             {
                                 u.OnDestroy();
@@ -129,6 +125,20 @@ namespace RkoOuttaNowhere.Gameplay
                 }
             }
             catch (Exception e) { };
+        }
+
+        public void upgradeWeapon(Upgrades.ammunition x)
+        {
+            ammo = x;
+        }
+        public void upgradeDamage(Upgrades.upgrades x)
+        {
+            damageModifier += (int)x;
+        }
+
+        public void upgradeAttackSpeed(Upgrades.upgrades x)
+        {
+            speedModifier -= (float)x;
         }
 
         

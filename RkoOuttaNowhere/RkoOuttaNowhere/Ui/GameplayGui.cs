@@ -26,14 +26,13 @@ namespace RkoOuttaNowhere.Ui
         
         public override void LoadContent()
         {
-            /*base.LoadContent();
             // Add our panels
             _panels.Add(_topBar);
 
             // Inintialize our offsets
             _position = Vector2.Zero;
             _imageOffset = new Vector2(75, 0);
-            _originOffset = new Vector2(10, 10);
+            _originOffset = new Vector2(75, 12);
 
             // Timer
             Image timer = new Image();
@@ -41,16 +40,55 @@ namespace RkoOuttaNowhere.Ui
             timer.Position = _position + _originOffset;
             timer.LoadContent();
             _topBar.Images.Add(timer);
-
-            // Countdown
+            // Text
             Image countdown = new Image();
             countdown.Path = "transparent";
-            countdown.Position = _position + _originOffset + _imageOffset + new Vector2(7, 17);
-            countdown.Text = "99";
+            countdown.Position = _position + _originOffset + _imageOffset + new Vector2(50, 35);
             countdown.Scale = new Vector2(2, 2);
             countdown.LoadContent();
             _topBar.Images.Add(countdown);
-            */
+            
+            // Waves Remaining
+            Image waves = new Image();
+            waves.Path = "ui/gameplay/waves";
+            waves.Position = _position + _originOffset + 3 * _imageOffset;
+            waves.LoadContent();
+            _topBar.Images.Add(waves);
+            // Text
+            Image wavesRemaining = new Image();
+            wavesRemaining.Path = "transparent";
+            wavesRemaining.Position = _position + _originOffset + 4 * _imageOffset + new Vector2(50, 35);
+            wavesRemaining.Scale = new Vector2(2, 2);
+            wavesRemaining.LoadContent();
+            _topBar.Images.Add(wavesRemaining);
+
+            // Money
+            Image money = new Image();
+            money.Path = "ui/gameplay/money";
+            money.Position = _position + _originOffset + 6 * _imageOffset;
+            money.LoadContent();
+            _topBar.Images.Add(money);
+            // Text
+            Image currentMoney = new Image();
+            currentMoney.Path = "transparent";
+            currentMoney.Position = _position + _originOffset + 7 * _imageOffset + new Vector2(50, 35);
+            currentMoney.Scale = new Vector2(2, 2);
+            currentMoney.LoadContent();
+            _topBar.Images.Add(currentMoney);
+
+            // Health
+            Image heart = new Image();
+            heart.Path = "ui/gameplay/health";
+            heart.Position = _position + _originOffset + 9 * _imageOffset;
+            heart.LoadContent();
+            _topBar.Images.Add(heart);
+            // Text
+            Image health = new Image();
+            health.Path = "transparent";
+            health.Position = _position + _originOffset + 10 * _imageOffset + new Vector2(50, 35);
+            health.Scale = new Vector2(2, 2);
+            health.LoadContent();
+            _topBar.Images.Add(health);
         }
         
         public override void UnloadContent()
@@ -58,7 +96,7 @@ namespace RkoOuttaNowhere.Ui
             base.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }
@@ -66,18 +104,10 @@ namespace RkoOuttaNowhere.Ui
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            _topBar.Images[1].RedrawText(spriteBatch, Color.White);
+            _topBar.Images[3].RedrawText(spriteBatch, Color.White);
+            _topBar.Images[5].RedrawText(spriteBatch, Color.White);
+            _topBar.Images[7].RedrawText(spriteBatch, Color.White);
         }
-
-        /*public override void SetTimer(float countdown)
-        {
-            _topBar.Images[1].Text = ((int)(countdown)).ToString();
-            _topBar.Images[1].LoadContent();
-        }
-
-        public void HandleNewGame(object sender, EventArgs e)
-        {
-            Console.WriteLine("New Game");
-        }
-         * */
     }
 }

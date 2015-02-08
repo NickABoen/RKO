@@ -48,6 +48,10 @@ namespace RkoOuttaNowhere.Levels
             get { return _waveCountdown; }
             set { _waveCountdown = value; }
         }
+        public int WavesRemaining
+        {
+            get { return _numWaves - _currentWave - 1; }
+        }
 
         public Level()
         {
@@ -135,6 +139,7 @@ namespace RkoOuttaNowhere.Levels
             // Check for the level to be over
             if (_currentWave + 1 == _numWaves)
             {
+                _waveCountdown = 0;
                 _levelOver = true;
                 foreach (Wave w in _waves) 
                 {
@@ -149,7 +154,6 @@ namespace RkoOuttaNowhere.Levels
                         Screens.ScreenManager.Instance.ChangeScreens(Screens.ScreenType.LevelSelect);
                         _changingScrens = true;
                     }
-                    
                 }
             }
         }

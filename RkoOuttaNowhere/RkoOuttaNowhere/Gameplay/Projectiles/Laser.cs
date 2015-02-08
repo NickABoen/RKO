@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RkoOuttaNowhere.Gameplay
+namespace RkoOuttaNowhere.Gameplay.Projectiles
 {
     class Laser : Projectile
     {  

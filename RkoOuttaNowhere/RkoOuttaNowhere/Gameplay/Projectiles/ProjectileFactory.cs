@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using RkoOuttaNowhere.Gameplay.Projectiles;
 using RkoOuttaNowhere.Input;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,32 @@ namespace RkoOuttaNowhere.Gameplay
         public const int FIRE_DAMAGE = 10;
         public const int LASER_DAMAGE = 15;
 
-        public static Projectile CreateGunShot()
+        public static Projectile Shoot(Vector2 _position, int damageMod, Upgrades.ammunition x)
+        {
+            if (Upgrades.ammunition.Laser == x)
+                return CreateLaserShot(_position, damageMod);
+            else if (Upgrades.ammunition.Fire == x)
+                return CreateFireShot(_position, damageMod);
+            else if (Upgrades.ammunition.Gun == x)
+                return CreateGunShot(_position, damageMod);
+            return null;
+        }
+
+        public static Projectile CreateGunShot(Vector2 _position, int damageMod)
         {
             return null;
         }
 
-        public static Projectile CreateFireShot()
+        public static Projectile CreateFireShot(Vector2 _position, int damageMod)
         {
-            return null;
+            Fire f = new Fire(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), FIRE_DAMAGE + damageMod);
+            f.LoadContent();
+            return f;
         }
 
-        public static Projectile CreateLaserShot(Vector2 _position)
+        public static Projectile CreateLaserShot(Vector2 _position, int damageMod)
         {
-            Projectile l = new Laser(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), LASER_DAMAGE);
+            Laser l = new Laser(_position, new Vector2(InputManager.Instance.MousePosition.X, InputManager.Instance.MousePosition.Y), LASER_DAMAGE + damageMod);
             l.LoadContent();
             return l;
         }
